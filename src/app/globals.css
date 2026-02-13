@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* GC Gatuzo Sans — all weights */
+@font-face {
+  font-family: "GC Gatuzo";
+  src: url("/fonts/GCGatuzo-Thin.woff2") format("woff2"),
+       url("/fonts/GCGatuzo-Thin.woff") format("woff"),
+       url("/fonts/GCGatuzo-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GC Gatuzo";
+  src: url("/fonts/GCGatuzo-ExtraLight.woff2") format("woff2"),
+       url("/fonts/GCGatuzo-ExtraLight.woff") format("woff"),
+       url("/fonts/GCGatuzo-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GC Gatuzo";
+  src: url("/fonts/GCGatuzo-Light.woff2") format("woff2"),
+       url("/fonts/GCGatuzo-Light.woff") format("woff"),
+       url("/fonts/GCGatuzo-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GC Gatuzo";
+  src: url("/fonts/GCGatuzo-Regular.woff2") format("woff2"),
+       url("/fonts/GCGatuzo-Regular.woff") format("woff"),
+       url("/fonts/GCGatuzo-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GC Gatuzo";
+  src: url("/fonts/GCGatuzo-Medium.woff2") format("woff2"),
+       url("/fonts/GCGatuzo-Medium.woff") format("woff"),
+       url("/fonts/GCGatuzo-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GC Gatuzo";
+  src: url("/fonts/GCGatuzo-SemiBold.woff2") format("woff2"),
+       url("/fonts/GCGatuzo-SemiBold.woff") format("woff"),
+       url("/fonts/GCGatuzo-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GC Gatuzo";
+  src: url("/fonts/GCGatuzo-Bold.woff2") format("woff2"),
+       url("/fonts/GCGatuzo-Bold.woff") format("woff"),
+       url("/fonts/GCGatuzo-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GC Gatuzo";
+  src: url("/fonts/GCGatuzo-ExtraBold.woff2") format("woff2"),
+       url("/fonts/GCGatuzo-ExtraBold.woff") format("woff"),
+       url("/fonts/GCGatuzo-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: #f8f8fc;
+  --color-fg: #00003f;
+  --color-muted: #5c5c7a;
+  --color-subtle: #9494ab;
+  --color-line: #dddde8;
+  --color-surface: #ededf4;
+  --color-white: #ffffff;
+  --color-accent-blue: #10069f;
+  --color-accent-orange: #ff6f2a;
+  --color-branch-projects: #c32c00;
+  --color-branch-training: #ff9719;
+  --color-branch-education: #00ad75;
+  --color-branch-events: #733ecd;
+  --font-sans: "GC Gatuzo", system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    font-feature-settings: "liga" 0, "clig" 0, "salt" 0, "ss01" 0, "ss02" 0, "ss03" 0, "ss04" 0, "ss05" 0, "ss06" 0, "ss07" 0, "ss08" 0, "ss09" 0, "ss10" 0, "ss11" 0, "ss12" 0, "ss13" 0, "ss14" 0, "ss15" 0, "ss16" 0, "ss17" 0, "ss18" 0, "ss19" 0, "ss20" 0, "calt" 0, "dlig" 0, "hlig" 0, "swsh" 0, "titl" 0;
+    font-variant-ligatures: none;
+    font-variant-alternates: normal;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-orange);
+    color: white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(to bottom, var(--color-surface) 0%, var(--color-bg) 50%);
+  }
+
+  .dark-section {
+    background-color: var(--color-fg);
+    color: var(--color-bg);
+  }
+
+  .icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background-color: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .group:hover .icon-box {
+    background-color: var(--branch-color, var(--color-fg));
+    color: white;
+  }
+
+  /* Branch link hover — colored in their respective branch color */
+  .nav-branch-link:hover {
+    color: var(--branch-hover) !important;
+  }
+
+  /* Accent mark — solid orange line */
+  .accent-mark {
+    width: 32px;
+    height: 2px;
+    background-color: var(--color-accent-orange);
+  }
+
+  /* Solid top border for footer */
+  .gradient-border-top {
+    position: relative;
+  }
+
+  .gradient-border-top::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-accent-orange);
+  }
 }
