@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { Home } from "lucide-react";
 
 const branches = [
   { name: "Projects", href: "/projects", logo: "/logo-projects.svg", color: "var(--color-branch-projects)" },
@@ -73,6 +74,15 @@ export function Navigation() {
             <div className="w-[220px]" />
 
             <div className="hidden md:flex items-center gap-1">
+              <Link
+                href="/"
+                className={`p-2 rounded-full transition-all duration-200 ${
+                  pathname === "/" ? "text-fg bg-surface" : "text-muted hover:text-fg hover:bg-surface/60"
+                }`}
+                aria-label="Home"
+              >
+                <Home size={16} strokeWidth={pathname === "/" ? 2.5 : 1.75} />
+              </Link>
               {branches.map((branch) => {
                 const isActive = pathname === branch.href;
                 return (

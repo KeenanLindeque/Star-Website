@@ -83,7 +83,7 @@
 
 @theme inline {
   --color-bg: #f8f8fc;
-  --color-fg: #00003f;
+  --color-fg: #10069f;
   --color-muted: #5c5c7a;
   --color-subtle: #9494ab;
   --color-line: #dddde8;
@@ -91,10 +91,10 @@
   --color-white: #ffffff;
   --color-accent-blue: #10069f;
   --color-accent-orange: #ff6f2a;
-  --color-branch-projects: #c32c00;
-  --color-branch-training: #ff9719;
-  --color-branch-education: #00ad75;
-  --color-branch-events: #733ecd;
+  --color-branch-projects: #6d8d9c;
+  --color-branch-training: #0088e0;
+  --color-branch-education: #1d9b1d;
+  --color-branch-events: #9800d1;
   --font-sans: "GC Gatuzo", system-ui, -apple-system, sans-serif;
 }
 
@@ -118,14 +118,18 @@
   }
 
   ::selection {
-    background-color: var(--color-accent-orange);
+    background-color: var(--branch-highlight, var(--color-accent-orange));
     color: white;
   }
 }
 
 @layer components {
   .hero-gradient {
-    background: linear-gradient(to bottom, var(--color-surface) 0%, var(--color-bg) 50%);
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--branch-highlight, var(--color-fg)) 12%, var(--color-bg)) 0%,
+      var(--color-bg) 50%
+    );
   }
 
   .dark-section {
@@ -145,7 +149,7 @@
   }
 
   .group:hover .icon-box {
-    background-color: var(--branch-color, var(--color-fg));
+    background-color: var(--branch-highlight, var(--branch-color, var(--color-fg)));
     color: white;
   }
 
@@ -154,11 +158,11 @@
     color: var(--branch-hover) !important;
   }
 
-  /* Accent mark — solid orange line */
+  /* Accent mark — branch-colored on branch pages, orange on home */
   .accent-mark {
     width: 32px;
     height: 2px;
-    background-color: var(--color-accent-orange);
+    background-color: var(--branch-highlight, var(--color-accent-orange));
   }
 
   /* Solid top border for footer */

@@ -1,26 +1,24 @@
 "use client";
 
 import { BranchHero } from "@/components/branch-hero";
-import { ServicesGrid } from "@/components/services-grid";
+import { CaseStudies } from "@/components/case-studies";
 import { SectionDivider } from "@/components/section-divider";
 import { StatsCounter } from "@/components/stats-counter";
-import { BookOpen, Award, Monitor, UserCheck, Layers, Lightbulb } from "lucide-react";
+import { ClientsTicker } from "@/components/clients-ticker";
 
 const BRANCH_COLOR = "var(--color-branch-training)";
 const LOGO = "/logo-training.svg";
 
-const services = [
-  { icon: BookOpen, title: "Technical & Professional Training", description: "Structured programs building practical skills aligned with sector and organizational requirements." },
-  { icon: Award, title: "Leadership Development", description: "Leadership and supervisory development programs for emerging and senior professionals." },
-  { icon: Layers, title: "Sector-Specific Programs", description: "Skill development programs tailored to specific industry sectors and regulatory environments." },
-  { icon: Monitor, title: "Corporate Training Solutions", description: "Custom-designed training solutions for organizations seeking measurable workforce improvement." },
-  { icon: Lightbulb, title: "Short Courses & Workshops", description: "Intensive short courses and workshops focused on rapid skill acquisition and practical application." },
-  { icon: UserCheck, title: "Blended Delivery", description: "Flexible blended and in-person training delivery models designed for maximum accessibility and impact." },
+const caseStudies = [
+  { client: "Aramco", project: "Technical Workforce Upskilling Program", description: "Designed and delivered a 12-month technical upskilling program for 800+ engineers across downstream operations, covering safety systems, process optimization, and digital tools.", detail: "The program combined classroom instruction with on-site practical labs, resulting in a 34% improvement in operational efficiency metrics and a 96% participant satisfaction rate.", image: "https://picsum.photos/seed/aramco-training/1200/800", tags: ["Technical Training", "Energy", "Workforce"] },
+  { client: "SABIC", project: "Leadership Development Academy", description: "Built a multi-tier leadership development academy for emerging and senior managers, incorporating coaching, simulations, and 360-degree assessments.", detail: "Over 18 months, 120 leaders completed the program across three tiers. Post-program tracking showed measurable improvement in team performance scores and internal promotion rates.", image: "https://picsum.photos/seed/sabic-leadership/1200/800", tags: ["Leadership", "Corporate", "Assessment"] },
+  { client: "Ministry of Education", project: "National Educator Training Initiative", description: "Nationwide train-the-trainer program equipping 2,000+ educators with modern pedagogical methods, digital literacy, and student engagement strategies.", detail: "Delivered across 13 regions simultaneously using a blended model, with localized facilitators supported by a centralized content and quality assurance team.", image: "https://picsum.photos/seed/moe-educators/1200/800", tags: ["Education", "Government", "Scale"] },
+  { client: "Siemens", project: "Industrial Automation Certification", description: "Intensive certification program in industrial automation and control systems for technical staff across three regional facilities.", detail: "Participants earned internationally recognized certifications in PLC programming, SCADA systems, and industrial networking, with a 98% first-attempt pass rate.", image: "https://picsum.photos/seed/siemens-auto/1200/800", tags: ["Certification", "Industrial", "Blended"] },
 ];
 
 export default function TrainingPage() {
   return (
-    <>
+    <div style={{ ["--branch-highlight" as string]: "var(--color-branch-training)" }}>
       <BranchHero
         label="Training"
         headline="Building practical skills and workforce readiness"
@@ -28,7 +26,22 @@ export default function TrainingPage() {
         branchColor={BRANCH_COLOR}
         logo={LOGO}
       />
-      <ServicesGrid services={services} branchColor={BRANCH_COLOR} />
+      <ClientsTicker
+        clients={[
+          "Aramco",
+          "NEOM",
+          "Saudi Telecom",
+          "SABIC",
+          "Red Sea Global",
+          "Ministry of Education",
+          "Almarai",
+          "Siemens",
+          "Deloitte",
+          "PwC",
+        ]}
+        branchColor={BRANCH_COLOR}
+      />
+      <CaseStudies studies={caseStudies} branchColor={BRANCH_COLOR} />
       <StatsCounter
         stats={[
           { value: 40, suffix: "+", label: "Programs delivered" },
@@ -50,6 +63,6 @@ export default function TrainingPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

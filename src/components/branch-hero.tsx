@@ -9,11 +9,16 @@ interface BranchHeroProps {
   description: string;
   branchColor: string;
   logo: string;
+  gradientStrength?: number;
 }
 
-export function BranchHero({ label, headline, description, branchColor, logo }: BranchHeroProps) {
+export function BranchHero({ label, headline, description, branchColor, logo, gradientStrength }: BranchHeroProps) {
+  const customGradient = gradientStrength
+    ? { background: `linear-gradient(to bottom, color-mix(in srgb, ${branchColor} ${gradientStrength}%, var(--color-bg)) 0%, var(--color-bg) 50%)` }
+    : undefined;
+
   return (
-    <section className="hero-gradient pt-40 pb-24 md:pt-48 md:pb-32">
+    <section className="hero-gradient pt-40 pb-24 md:pt-48 md:pb-32" style={customGradient}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="max-w-2xl">
           {/* Spacer for the floating logo that animates into the nav */}
@@ -59,7 +64,12 @@ export function BranchHero({ label, headline, description, branchColor, logo }: 
               Get in touch
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </button>
-            <button className="text-sm font-medium text-muted px-6 py-3 rounded-full border border-line hover:text-fg hover:border-fg transition-all duration-200">
+            <button
+              className="text-sm font-medium text-muted px-6 py-3 rounded-full border border-line transition-all duration-200 hover:text-white"
+              style={{ ["--branch-btn" as string]: branchColor }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = branchColor; e.currentTarget.style.borderColor = branchColor; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = ""; e.currentTarget.style.borderColor = ""; }}
+            >
               View work
             </button>
           </motion.div>

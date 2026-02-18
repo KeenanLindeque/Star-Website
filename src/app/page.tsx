@@ -7,10 +7,10 @@ import Image from "next/image";
 import { StatsCounter } from "@/components/stats-counter";
 
 const branches = [
-  { name: "Projects", href: "/projects", color: "var(--color-branch-projects)", logo: "/logo-projects.svg", logoMono: "/logo-projects-mono.svg", desc: "Complex government and organizational mandates through structured execution and governance." },
-  { name: "Training", href: "/training", color: "var(--color-branch-training)", logo: "/logo-training.svg", logoMono: "/logo-training-mono.svg", desc: "Competency-based professional training programs that build practical skills and workforce readiness." },
-  { name: "Education", href: "/education", color: "var(--color-branch-education)", logo: "/logo-education.svg", logoMono: "/logo-education-mono.svg", desc: "Academic partnerships, education pathways, and long-term learning programs aligned with national priorities." },
-  { name: "Events", href: "/events", color: "var(--color-branch-events)", logo: "/logo-events.svg", logoMono: "/logo-events-mono.svg", desc: "Full-service strategic events from concept development to end-to-end execution." },
+  { name: "Projects", href: "/projects", color: "var(--color-branch-projects)", logo: "/logo-projects.svg", logoWhite: "/logo-projects-white.svg", desc: "Complex government and organizational mandates through structured execution and governance." },
+  { name: "Training", href: "/training", color: "var(--color-branch-training)", logo: "/logo-training.svg", logoWhite: "/logo-training-white.svg", desc: "Competency-based professional training programs that build practical skills and workforce readiness." },
+  { name: "Education", href: "/education", color: "var(--color-branch-education)", logo: "/logo-education.svg", logoWhite: "/logo-education-white.svg", desc: "Academic partnerships, education pathways, and long-term learning programs aligned with national priorities." },
+  { name: "Events", href: "/events", color: "var(--color-branch-events)", logo: "/logo-events.svg", logoWhite: "/logo-events-white.svg", desc: "Full-service strategic events from concept development to end-to-end execution." },
 ];
 
 const fadeUp = { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } };
@@ -68,23 +68,18 @@ export default function Home() {
               <motion.div key={branch.href} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}>
                 <Link
                   href={branch.href}
-                  className="group block relative overflow-hidden rounded-xl transition-all duration-400"
+                  className="group block relative overflow-hidden rounded-2xl transition-all duration-400"
                   style={{ ["--branch-color" as string]: branch.color }}
                 >
-                  {/* Background tint on hover */}
+                  {/* Full branch-color background on hover */}
                   <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-[0.04] transition-opacity duration-400 rounded-xl"
-                    style={{ backgroundColor: branch.color }}
-                  />
-                  {/* Left accent bar */}
-                  <div
-                    className="absolute left-0 top-4 bottom-4 w-[3px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl"
                     style={{ backgroundColor: branch.color }}
                   />
 
-                  <div className="relative flex items-start md:items-center justify-between gap-6 py-8 pl-0 group-hover:pl-8 transition-all duration-400" style={{ borderBottom: "1px solid var(--color-line)" }}>
+                  <div className="relative flex items-start md:items-center justify-between gap-6 py-8 px-0 group-hover:px-8 transition-all duration-400" style={{ borderBottom: "1px solid var(--color-line)" }}>
                     <div className="flex items-start md:items-center gap-6 md:gap-10 flex-1 flex-col md:flex-row">
-                      {/* Logo: default visible, monochrome on hover */}
+                      {/* Color logo (default) */}
                       <div className="relative h-20 md:h-24">
                         <Image
                           src={branch.logo}
@@ -94,7 +89,7 @@ export default function Home() {
                           className="h-20 md:h-24 w-auto transition-opacity duration-300 group-hover:opacity-0"
                         />
                         <Image
-                          src={branch.logoMono}
+                          src={branch.logoWhite}
                           alt=""
                           width={320}
                           height={90}
@@ -102,9 +97,9 @@ export default function Home() {
                           aria-hidden
                         />
                       </div>
-                      <p className="text-muted text-sm leading-relaxed md:ml-auto md:max-w-xs md:text-right">{branch.desc}</p>
+                      <p className="text-muted text-sm leading-relaxed md:ml-auto md:max-w-xs md:text-right transition-colors duration-300 group-hover:text-white/80">{branch.desc}</p>
                     </div>
-                    <ArrowUpRight size={20} className="text-muted transition-colors duration-300 group-hover:text-[var(--branch-color)] mt-1 md:mt-0 shrink-0" />
+                    <ArrowUpRight size={20} className="text-muted transition-colors duration-300 group-hover:text-white mt-1 md:mt-0 shrink-0" />
                   </div>
                 </Link>
               </motion.div>

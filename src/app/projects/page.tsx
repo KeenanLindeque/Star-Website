@@ -1,34 +1,48 @@
 "use client";
 
 import { BranchHero } from "@/components/branch-hero";
-import { ServicesGrid } from "@/components/services-grid";
+import { CaseStudies } from "@/components/case-studies";
 import { SectionDivider } from "@/components/section-divider";
 import { StatsCounter } from "@/components/stats-counter";
-import { Briefcase, ClipboardList, Users, BarChart3, Target, Settings } from "lucide-react";
+import { ClientsTicker } from "@/components/clients-ticker";
 
 const BRANCH_COLOR = "var(--color-branch-projects)";
 const LOGO = "/logo-projects.svg";
 
-const services = [
-  { icon: ClipboardList, title: "Methodology & Governance", description: "Stage-gated project management aligned with international standards. Governance structures, milestone mapping, and steering committees." },
-  { icon: BarChart3, title: "Tools & Digital Systems", description: "Real-time dashboards, milestone tracking, risk management logs, budget oversight, and client-access portals for full transparency." },
-  { icon: Briefcase, title: "Procurement & Vendor Management", description: "Vendor evaluation, tender and RFP support, contract structuring, multi-vendor coordination, and compliance monitoring." },
-  { icon: Users, title: "SME Mobilization", description: "Identification and onboarding of subject matter experts, regional partnerships, and project-specific expertise assembly." },
-  { icon: Target, title: "Risk & Performance", description: "Risk identification and mitigation planning, performance tracking and reporting, change management and stakeholder alignment." },
-  { icon: Settings, title: "Execution & Delivery", description: "Work breakdown structures, resource allocation, milestone delivery, and post-project review and handover." },
+const caseStudies = [
+  { client: "NEOM", project: "Infrastructure Program Management Office", description: "End-to-end PMO setup and execution for a multi-billion dollar infrastructure program spanning urban planning, logistics, and utilities delivery across a greenfield megaproject.", detail: "Our team embedded within the NEOM project structure, establishing governance frameworks, risk registers, and milestone tracking systems that served as the backbone for cross-functional coordination across 12 workstreams.", image: "https://picsum.photos/seed/neom-pmo/1200/800", tags: ["PMO", "Infrastructure", "Governance"] },
+  { client: "Red Sea Global", project: "Vendor Procurement & Coordination", description: "Design and implementation of a centralized procurement framework managing 40+ vendors across hospitality, marine, and sustainability workstreams.", detail: "We built a unified vendor evaluation and onboarding process, implemented compliance monitoring dashboards, and coordinated multi-vendor delivery schedules across three distinct geographic zones.", image: "https://picsum.photos/seed/rsg-procurement/1200/800", tags: ["Procurement", "Multi-vendor", "Compliance"] },
+  { client: "Qiddiya", project: "Entertainment District Delivery", description: "Structured project delivery for a flagship entertainment district including stakeholder alignment, risk management, and milestone-based reporting.", detail: "From concept through handover, we managed the delivery of a 200,000 sqm entertainment precinct, aligning international design consultants with local contractors under a single governance umbrella.", image: "https://picsum.photos/seed/qiddiya-ent/1200/800", tags: ["Execution", "Risk Management", "Reporting"] },
+  { client: "Public Investment Fund", project: "Portfolio Governance Framework", description: "Development of a governance and performance tracking framework for a portfolio of national strategic projects, enabling centralized oversight and accountability.", detail: "We designed a portfolio-level KPI architecture with automated reporting pipelines, enabling the PIF leadership team to monitor progress, budget variance, and risk exposure across 25+ concurrent initiatives.", image: "https://picsum.photos/seed/pif-governance/1200/800", tags: ["Governance", "Portfolio", "Strategy"] },
 ];
 
 export default function ProjectsPage() {
   return (
-    <>
+    <div style={{ ["--branch-highlight" as string]: "var(--color-branch-projects)" }}>
       <BranchHero
         label="Projects"
         headline="Structured execution for complex mandates"
         description="Star Projects delivers complex government and organizational mandates through structured project management, disciplined execution, and strong governance frameworks."
         branchColor={BRANCH_COLOR}
         logo={LOGO}
+        gradientStrength={22}
       />
-      <ServicesGrid services={services} branchColor={BRANCH_COLOR} />
+      <ClientsTicker
+        clients={[
+          "NEOM",
+          "Red Sea Global",
+          "Qiddiya",
+          "ROSHN",
+          "Public Investment Fund",
+          "Aramco",
+          "Ministry of Defense",
+          "ACWA Power",
+          "Lucid Motors",
+          "The Line",
+        ]}
+        branchColor={BRANCH_COLOR}
+      />
+      <CaseStudies studies={caseStudies} branchColor={BRANCH_COLOR} />
       <StatsCounter
         stats={[
           { value: 150, suffix: "+", label: "Projects delivered" },
@@ -50,6 +64,6 @@ export default function ProjectsPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

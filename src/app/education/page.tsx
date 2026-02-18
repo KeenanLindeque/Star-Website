@@ -1,26 +1,24 @@
 "use client";
 
 import { BranchHero } from "@/components/branch-hero";
-import { ServicesGrid } from "@/components/services-grid";
+import { CaseStudies } from "@/components/case-studies";
 import { SectionDivider } from "@/components/section-divider";
 import { StatsCounter } from "@/components/stats-counter";
-import { GraduationCap, BookMarked, School, Globe, PenTool, Library } from "lucide-react";
+import { ClientsTicker } from "@/components/clients-ticker";
 
 const BRANCH_COLOR = "var(--color-branch-education)";
 const LOGO = "/logo-education.svg";
 
-const services = [
-  { icon: GraduationCap, title: "Education Pathway Design", description: "Structured learning pathways aligned with national and institutional priorities for long-term impact." },
-  { icon: School, title: "University Partnerships", description: "International university partnerships and institutional representation connecting learners to global opportunities." },
-  { icon: BookMarked, title: "Scholarship Programs", description: "Scholarship program design and management, from application frameworks to placement support." },
-  { icon: Globe, title: "Student Placement", description: "Student application support, placement coordination, and academic progress tracking across institutions." },
-  { icon: PenTool, title: "Return-to-Work Alignment", description: "Strategies that bridge academic completion with professional re-entry and career development." },
-  { icon: Library, title: "Academic Advisory", description: "Education advisory and academic program coordination for institutions and government bodies." },
+const caseStudies = [
+  { client: "KAUST", project: "Graduate Research Pathway Program", description: "Designed a structured research pathway connecting Saudi graduates with international doctoral programs, including mentorship frameworks and institutional agreements.", detail: "We established partnerships with 8 international universities and built a mentorship matching system that paired 200+ graduates with academic supervisors in their research fields.", image: "https://picsum.photos/seed/kaust-research/1200/800", tags: ["Research", "Graduate", "Partnerships"] },
+  { client: "British Council", project: "English Language Excellence Initiative", description: "National-scale English language proficiency program serving 1,500+ government-sponsored students preparing for international university admission.", detail: "The initiative achieved a 78% improvement in average IELTS scores across cohorts, with dedicated preparation tracks for STEM, humanities, and business disciplines.", image: "https://picsum.photos/seed/bc-english/1200/800", tags: ["Language", "Government", "Scale"] },
+  { client: "University of Oxford", project: "Executive Education Partnership", description: "Co-developed an executive education partnership placing senior professionals into tailored short-course programs at Oxford, with return-to-work alignment.", detail: "Three cohorts of 25 executives completed bespoke programs in strategic leadership, digital transformation, and public policy, with post-program career tracking and institutional feedback loops.", image: "https://picsum.photos/seed/oxford-exec/1200/800", tags: ["Executive", "International", "Advisory"] },
+  { client: "Ministry of Education", project: "National Scholarship Management System", description: "End-to-end design and management of a scholarship program covering application processing, university matching, placement tracking, and alumni engagement.", detail: "We processed 4,000+ applications annually, managing placements across 15 countries with real-time academic progress dashboards and automated compliance reporting.", image: "https://picsum.photos/seed/moe-scholarships/1200/800", tags: ["Scholarships", "Management", "Nationwide"] },
 ];
 
 export default function EducationPage() {
   return (
-    <>
+    <div style={{ ["--branch-highlight" as string]: "var(--color-branch-education)" }}>
       <BranchHero
         label="Education"
         headline="Pathways, partnerships, and long-term learning"
@@ -28,7 +26,22 @@ export default function EducationPage() {
         branchColor={BRANCH_COLOR}
         logo={LOGO}
       />
-      <ServicesGrid services={services} branchColor={BRANCH_COLOR} />
+      <ClientsTicker
+        clients={[
+          "King Saud University",
+          "University of Oxford",
+          "Monash University",
+          "KAUST",
+          "UNESCO",
+          "British Council",
+          "Ministry of Education",
+          "Masdar Institute",
+          "Imperial College",
+          "GEMS Education",
+        ]}
+        branchColor={BRANCH_COLOR}
+      />
+      <CaseStudies studies={caseStudies} branchColor={BRANCH_COLOR} />
       <StatsCounter
         stats={[
           { value: 20, suffix: "+", label: "Academic partnerships" },
@@ -50,6 +63,6 @@ export default function EducationPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

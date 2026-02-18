@@ -1,26 +1,24 @@
 "use client";
 
 import { BranchHero } from "@/components/branch-hero";
-import { ServicesGrid } from "@/components/services-grid";
+import { CaseStudies } from "@/components/case-studies";
 import { SectionDivider } from "@/components/section-divider";
 import { StatsCounter } from "@/components/stats-counter";
-import { Calendar, Mic2, MapPin, Ticket, Sparkles, Camera } from "lucide-react";
+import { ClientsTicker } from "@/components/clients-ticker";
 
 const BRANCH_COLOR = "var(--color-branch-events)";
 const LOGO = "/logo-events.svg";
 
-const services = [
-  { icon: Calendar, title: "Strategy & Planning", description: "Concept and positioning, agenda design, budgeting, timeline planning, KPI definition and outcome alignment." },
-  { icon: Sparkles, title: "Creative & Experience Design", description: "Creative direction and theming, branding, stage and spatial design, and guest journey planning." },
-  { icon: MapPin, title: "Production & Technical", description: "Venue sourcing, audio-visual and staging, exhibition build-up, show calling and live management." },
-  { icon: Mic2, title: "Guest & Protocol Management", description: "Invitations and registration, VIP and protocol management, speaker coordination, on-site hospitality." },
-  { icon: Ticket, title: "Sponsorship & Partnerships", description: "Sponsorship packaging, partner coordination, brand visibility management, and sponsor activations." },
-  { icon: Camera, title: "Operations & Compliance", description: "On-site operations, health and safety, permits and insurance, contingency planning and risk management." },
+const caseStudies = [
+  { client: "G20 Saudi Secretariat", project: "G20 Leaders Summit — Event Operations", description: "Full operational delivery for a G20 Leaders Summit workstream, including venue management, protocol coordination, media facilitation, and multi-government stakeholder logistics.", detail: "We managed 14 parallel venues, coordinated protocol for 20 heads of state, and facilitated 200+ media accreditations with zero security incidents across the 3-day summit.", image: "https://picsum.photos/seed/g20-summit/1200/800", tags: ["Summit", "Protocol", "Government"] },
+  { client: "Saudi Tourism Authority", project: "International Tourism Investment Forum", description: "End-to-end delivery of a flagship investment forum attracting 3,000+ delegates, with sponsorship activation, speaker curation, and immersive experience design.", detail: "The forum generated $2.4B in signed investment commitments, with our team managing everything from venue build-up to a fully produced gala dinner for 800 VIP guests.", image: "https://picsum.photos/seed/sta-forum/1200/800", tags: ["Forum", "Investment", "Tourism"] },
+  { client: "MDLBEAST", project: "Soundstorm Festival — VIP Experience", description: "Designed and managed the VIP guest journey for a 700,000-attendee music festival, covering hospitality suites, artist meet-and-greets, and premium access zones.", detail: "Our team designed 6 distinct VIP zones, managed backstage logistics for 80+ international artists, and delivered a seamless guest journey from arrival to after-party.", image: "https://picsum.photos/seed/mdlbeast-vip/1200/800", tags: ["Festival", "VIP", "Experience"] },
+  { client: "Ministry of Culture", project: "National Heritage Awards Ceremony", description: "Concept-to-execution delivery of an annual heritage awards ceremony, including creative direction, stage design, live production, and broadcast coordination.", detail: "The ceremony was broadcast live to 4 million viewers, featuring a custom-designed stage, holographic projections, and a curated cultural performance program.", image: "https://picsum.photos/seed/moc-awards/1200/800", tags: ["Awards", "Creative", "Broadcast"] },
 ];
 
 export default function EventsPage() {
   return (
-    <>
+    <div style={{ ["--branch-highlight" as string]: "var(--color-branch-events)" }}>
       <BranchHero
         label="Events"
         headline="Strategic events, end-to-end"
@@ -28,7 +26,22 @@ export default function EventsPage() {
         branchColor={BRANCH_COLOR}
         logo={LOGO}
       />
-      <ServicesGrid services={services} branchColor={BRANCH_COLOR} />
+      <ClientsTicker
+        clients={[
+          "World Economic Forum",
+          "G20 Saudi Secretariat",
+          "Saudi Tourism Authority",
+          "Expo 2030",
+          "MDLBEAST",
+          "Diriyah Gate",
+          "Formula E",
+          "Riyadh Season",
+          "Ministry of Culture",
+          "KAEC",
+        ]}
+        branchColor={BRANCH_COLOR}
+      />
+      <CaseStudies studies={caseStudies} branchColor={BRANCH_COLOR} />
       <StatsCounter
         stats={[
           { value: 60, suffix: "+", label: "Events delivered" },
@@ -50,6 +63,6 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
