@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 interface ClientsTickerProps {
   clients: string[];
@@ -14,26 +14,28 @@ export function ClientsTicker({
   label = "Trusted by",
 }: ClientsTickerProps) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const pausedRef = useRef(false);
+  const offsetRef = useRef(0);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
-    let offset = 0;
     let raf: number;
 
     const step = () => {
-      offset -= 0.4;
-      const half = track.scrollWidth / 2;
-      if (Math.abs(offset) >= half) offset = 0;
-      track.style.transform = `translate3d(${offset}px, 0, 0)`;
-      if (!isPaused) raf = requestAnimationFrame(step);
+      if (!pausedRef.current) {
+        offsetRef.current -= 0.4;
+        const half = track.scrollWidth / 2;
+        if (Math.abs(offsetRef.current) >= half) offsetRef.current = 0;
+        track.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`;
+      }
+      raf = requestAnimationFrame(step);
     };
 
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [isPaused]);
+  }, []);
 
   const doubled = [...clients, ...clients];
 
@@ -47,8 +49,8 @@ export function ClientsTicker({
 
       <div
         className="relative"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        onMouseEnter={() => { pausedRef.current = true; }}
+        onMouseLeave={() => { pausedRef.current = false; }}
       >
         <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 z-10 bg-gradient-to-r from-bg to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 z-10 bg-gradient-to-l from-bg to-transparent" />

@@ -20,7 +20,7 @@ export default function EventsPage() {
   return (
     <div style={{ ["--branch-highlight" as string]: "var(--color-branch-events)" }}>
       <BranchHero
-        label="Events"
+        label="Moments that matter"
         headline="Strategic events, end-to-end"
         description="Star Events is a full-service strategic events partner delivering end-to-end government and corporate events from concept development to execution."
         branchColor={BRANCH_COLOR}

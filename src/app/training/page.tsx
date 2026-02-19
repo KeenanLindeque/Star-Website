@@ -20,7 +20,7 @@ export default function TrainingPage() {
   return (
     <div style={{ ["--branch-highlight" as string]: "var(--color-branch-training)" }}>
       <BranchHero
-        label="Training"
+        label="Skill-building that sticks"
         headline="Building practical skills and workforce readiness"
         description="Star Training designs and delivers structured professional training programs that are competency-based, outcome-driven, and aligned with sector needs."
         branchColor={BRANCH_COLOR}

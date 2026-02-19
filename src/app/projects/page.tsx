@@ -20,7 +20,7 @@ export default function ProjectsPage() {
   return (
     <div style={{ ["--branch-highlight" as string]: "var(--color-branch-projects)" }}>
       <BranchHero
-        label="Projects"
+        label="Delivering what others can't"
         headline="Structured execution for complex mandates"
         description="Star Projects delivers complex government and organizational mandates through structured project management, disciplined execution, and strong governance frameworks."
         branchColor={BRANCH_COLOR}

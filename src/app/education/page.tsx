@@ -20,7 +20,7 @@ export default function EducationPage() {
   return (
     <div style={{ ["--branch-highlight" as string]: "var(--color-branch-education)" }}>
       <BranchHero
-        label="Education"
+        label="Learning without limits"
         headline="Pathways, partnerships, and long-term learning"
         description="Star Education develops and manages education pathways, academic partnerships, and long-term learning programs aligned with national and institutional priorities."
         branchColor={BRANCH_COLOR}

@@ -77,11 +77,11 @@ export function Navigation() {
               <Link
                 href="/"
                 className={`p-2 rounded-full transition-all duration-200 ${
-                  pathname === "/" ? "text-fg bg-surface" : "text-muted hover:text-fg hover:bg-surface/60"
+                  pathname === "/" ? "bg-accent-orange" : "bg-transparent hover:bg-surface/60"
                 }`}
                 aria-label="Home"
               >
-                <Home size={16} strokeWidth={pathname === "/" ? 2.5 : 1.75} />
+                <Home size={16} strokeWidth={pathname === "/" ? 2.5 : 1.75} style={{ color: pathname === "/" ? "#ffffff" : "var(--color-muted)" }} />
               </Link>
               {branches.map((branch) => {
                 const isActive = pathname === branch.href;

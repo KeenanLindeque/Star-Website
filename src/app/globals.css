@@ -165,6 +165,16 @@
     background-color: var(--branch-highlight, var(--color-accent-orange));
   }
 
+  @keyframes star-drift {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  @keyframes star-pulse {
+    0%, 100% { opacity: 0.04; }
+    50% { opacity: 0.07; }
+  }
+
   /* Solid top border for footer */
   .gradient-border-top {
     position: relative;
