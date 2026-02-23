@@ -204,37 +204,6 @@ export default function Home() {
         { value: 98, suffix: "%", label: "Client satisfaction" },
       ]} />
 
-      {/* CTA */}
-      <section className="pb-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div
-            className="w-[500px] h-[500px] rounded-full"
-            style={{
-              background: "radial-gradient(circle, color-mix(in srgb, var(--color-fg) 4%, transparent) 0%, transparent 70%)",
-            }}
-          />
-        </div>
-        <LogoStar
-          className="absolute text-fg pointer-events-none"
-          style={{
-            width: 350,
-            height: 350,
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            opacity: 0.03,
-            animation: "star-drift 80s linear infinite, star-pulse 6s ease-in-out infinite",
-          }}
-        />
-        <div className="relative max-w-6xl mx-auto text-center">
-          <h2 className="text-fg tracking-tight mb-4" style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", fontWeight: 500 }}>Ready to get started?</h2>
-          <p className="text-muted mb-10 max-w-md mx-auto">Disciplined execution, experienced leadership, and advanced digital systems &mdash; let&apos;s deliver something exceptional.</p>
-          <Link href="mailto:hello@star.com" className="group inline-flex items-center gap-3 bg-fg text-white px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 hover:bg-accent-orange">
-            Start a conversation
-            <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-      </section>
     </>
   );
 }
