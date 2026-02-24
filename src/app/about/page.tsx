@@ -12,9 +12,9 @@ const fadeUp = {
 };
 
 const branches = [
-  { name: "Projects", logo: "/logo-projects.svg", stat: "150+", label: "Projects delivered", color: "#6d8d9c", href: "/projects" },
   { name: "Training", logo: "/logo-training.svg", stat: "40+", label: "Training programmes", color: "#0088e0", href: "/training" },
   { name: "Education", logo: "/logo-education.svg", stat: "15+", label: "Academic partnerships", color: "#1d9b1d", href: "/education" },
+  { name: "Projects", logo: "/logo-projects.svg", stat: "150+", label: "Projects delivered", color: "#6d8d9c", href: "/projects" },
   { name: "Events", logo: "/logo-events.svg", stat: "200+", label: "Events executed", color: "#9800d1", href: "/events" },
 ];
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
               className="text-fg leading-[1.08]"
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 500, letterSpacing: "-0.03em" }}
             >
-              About Star Group
+              About Star
             </h1>
             <p className="text-muted text-lg md:text-xl leading-relaxed mt-8 max-w-xl">
               A multi-disciplinary group delivering training, education, strategic events, and complex project execution for governments and organizations worldwide.
@@ -65,8 +65,8 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative block rounded-2xl bg-surface p-8 md:p-10 transition-all duration-300 hover:shadow-lg cursor-pointer overflow-hidden"
-                style={{ borderLeft: `4px solid ${b.color}` }}
+                className="group relative block rounded-2xl bg-surface p-8 md:p-10 transition-all duration-300 cursor-pointer overflow-hidden hover:shadow-[inset_0_0_0_2px_var(--branch-color)]"
+                style={{ ["--branch-color" as string]: b.color, borderLeft: `4px solid ${b.color}` } as React.CSSProperties}
               >
                 <div className="flex items-center justify-between mb-6">
                   <Image

@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer";
 import { PageTransition } from "@/components/page-transition";
 
 export const metadata: Metadata = {
-  title: "Star Group",
+  title: "Star",
   description: "A multi-disciplinary group delivering training, education, strategic events, and complex project execution for governments and organizations.",
 };
 

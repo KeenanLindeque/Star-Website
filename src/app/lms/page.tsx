@@ -31,7 +31,7 @@ export default function LMSPage() {
               className="text-fg leading-[1.08]"
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 500, letterSpacing: "-0.03em" }}
             >
-              Online Learning
+              Self-Learning
             </h1>
             <p className="text-muted text-lg md:text-xl leading-relaxed mt-8 max-w-xl">
               Access world-class professional certifications through our integrated learning platform.

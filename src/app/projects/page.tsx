@@ -29,16 +29,14 @@ export default function ProjectsPage() {
       />
       <ClientsTicker
         clients={[
-          "NEOM",
-          "Red Sea Global",
-          "Qiddiya",
-          "ROSHN",
-          "Public Investment Fund",
-          "Aramco",
-          "Ministry of Defense",
-          "ACWA Power",
-          "Lucid Motors",
-          "The Line",
+          { name: "NEOM", logo: "/logos/neom.svg" },
+          { name: "Red Sea Global", logo: "/logos/red-sea-global.svg" },
+          { name: "Qiddiya", logo: "/logos/qiddiya.svg" },
+          { name: "ROSHN", logo: "/logos/roshn.svg" },
+          { name: "Public Investment Fund", logo: "/logos/pif.svg" },
+          { name: "Aramco", logo: "/logos/aramco.svg" },
+          { name: "ACWA Power", logo: "/logos/acwa-power.svg" },
+          { name: "Lucid Motors", logo: "/logos/lucid.svg" },
         ]}
         branchColor={BRANCH_COLOR}
       />

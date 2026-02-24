@@ -13,7 +13,7 @@ const sections = [
   {
     title: "Data Privacy Policy",
     content: [
-      "Star Group is committed to protecting the privacy and security of personal data. We collect, process, and store personal information only as necessary to deliver our services and meet legal obligations.",
+      "Star is committed to protecting the privacy and security of personal data. We collect, process, and store personal information only as necessary to deliver our services and meet legal obligations.",
       "We implement appropriate technical and organisational measures to safeguard personal data against unauthorised access, alteration, disclosure, or destruction. Data is retained only for as long as necessary to fulfil the purposes for which it was collected.",
       "Individuals have the right to access, correct, or request deletion of their personal data. To exercise these rights, please contact our data protection team at privacy@star.com.",
     ],
@@ -29,7 +29,7 @@ const sections = [
   {
     title: "Ethics Policy",
     content: [
-      "Star Group operates with the highest standards of integrity, transparency, and ethical conduct. All employees, contractors, and partners are expected to uphold these standards in every interaction.",
+      "Star operates with the highest standards of integrity, transparency, and ethical conduct. All employees, contractors, and partners are expected to uphold these standards in every interaction.",
       "We have zero tolerance for bribery, corruption, fraud, or any form of unethical behaviour. Our ethics framework covers conflicts of interest, fair dealing, confidentiality, and responsible use of company resources.",
       "We encourage the reporting of any concerns through our confidential ethics hotline. All reports are investigated thoroughly, and whistleblowers are protected from retaliation under our whistleblower protection policy.",
     ],
@@ -37,16 +37,16 @@ const sections = [
   {
     title: "Terms of Use",
     content: [
-      "By accessing and using the Star Group website and services, you agree to be bound by these terms and conditions. All content on this site, including text, graphics, logos, and software, is the property of Star Group and is protected by applicable intellectual property laws.",
-      "Star Group reserves the right to modify, suspend, or discontinue any aspect of its services at any time. We are not liable for any damages arising from the use or inability to use our services.",
+      "By accessing and using the Star website and services, you agree to be bound by these terms and conditions. All content on this site, including text, graphics, logos, and software, is the property of Star and is protected by applicable intellectual property laws.",
+      "Star reserves the right to modify, suspend, or discontinue any aspect of its services at any time. We are not liable for any damages arising from the use or inability to use our services.",
       "These terms are governed by the laws of the Republic of South Africa. Any disputes shall be resolved in the courts of competent jurisdiction in Johannesburg.",
     ],
   },
   {
     title: "Acceptable Use",
     content: [
-      "Users of Star Group services and platforms agree not to use them for any unlawful purpose, to transmit harmful or offensive content, or to attempt to gain unauthorised access to our systems.",
-      "We reserve the right to suspend or terminate access to our services for any user who violates these terms or engages in conduct that we reasonably believe is detrimental to other users or to Star Group.",
+      "Users of Star services and platforms agree not to use them for any unlawful purpose, to transmit harmful or offensive content, or to attempt to gain unauthorised access to our systems.",
+      "We reserve the right to suspend or terminate access to our services for any user who violates these terms or engages in conduct that we reasonably believe is detrimental to other users or to Star.",
     ],
   },
 ];
@@ -84,7 +84,7 @@ export default function TermsPage() {
             <div>
               <h3 className="text-fg text-base font-medium mb-1">Fully compliant with Saudi data protection regulations</h3>
               <p className="text-muted text-sm leading-relaxed">
-                Star Group operates in full compliance with the Kingdom of Saudi Arabia&apos;s Personal Data Protection Law (PDPL) and all applicable data governance frameworks. We ensure the privacy, confidentiality, and security of all personal data processed across our operations, applying the highest standards of data protection to every engagement.
+                Star operates in full compliance with the Kingdom of Saudi Arabia&apos;s Personal Data Protection Law (PDPL) and all applicable data governance frameworks. We ensure the privacy, confidentiality, and security of all personal data processed across our operations, applying the highest standards of data protection to every engagement.
               </p>
             </div>
           </motion.div>

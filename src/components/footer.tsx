@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 
 const branches = [
-  { name: "Projects", href: "/projects", logo: "/logo-projects.svg", logoWhite: "/logo-projects-white.svg", color: "var(--color-branch-projects)" },
   { name: "Training", href: "/training", logo: "/logo-training.svg", logoWhite: "/logo-training-white.svg", color: "var(--color-branch-training)" },
   { name: "Education", href: "/education", logo: "/logo-education.svg", logoWhite: "/logo-education-white.svg", color: "var(--color-branch-education)" },
+  { name: "Projects", href: "/projects", logo: "/logo-projects.svg", logoWhite: "/logo-projects-white.svg", color: "var(--color-branch-projects)" },
   { name: "Events", href: "/events", logo: "/logo-events.svg", logoWhite: "/logo-events-white.svg", color: "var(--color-branch-events)" },
 ];
 
@@ -39,26 +39,18 @@ export function Footer() {
             <h3 className="text-white text-2xl md:text-3xl font-medium tracking-tight mb-2">Ready to get started?</h3>
             <p className="text-white/50 text-sm max-w-md">Disciplined execution, experienced leadership &mdash; let&apos;s deliver something exceptional.</p>
           </div>
-          <div className="flex items-center gap-3">
-            <a
-              href="tel:0114333380"
-              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium px-6 py-3 rounded-full transition-all duration-300"
-            >
-              011 433 3380
-            </a>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 text-sm font-medium px-6 py-3 rounded-full transition-all duration-300"
-              style={
-                activeBranch
-                  ? { backgroundColor: "#ffffff", color: activeBranch.color }
-                  : { backgroundColor: "var(--color-accent-orange)", color: "#ffffff" }
-              }
-            >
-              Contact us
-              <ArrowUpRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </div>
+          <Link
+            href="/contact"
+            className="group inline-flex items-center gap-2 text-sm font-medium px-6 py-3 rounded-full transition-all duration-300"
+            style={
+              activeBranch
+                ? { backgroundColor: "#ffffff", color: activeBranch.color }
+                : { backgroundColor: "var(--color-accent-orange)", color: "#ffffff" }
+            }
+          >
+            Contact us
+            <ArrowUpRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </div>
 
@@ -131,8 +123,8 @@ export function Footer() {
             <h4 className="text-[10px] uppercase tracking-[0.15em] text-white/35 mb-5 font-semibold">Connect</h4>
             <div className="flex flex-col gap-3">
               <Link href="/contact" className="text-sm text-white/60 hover:text-white transition-colors duration-200">Contact Us</Link>
-              <Link href="/partnerships" className="text-sm text-white/60 hover:text-white transition-colors duration-200">Work With Us</Link>
-              <Link href="/lms" className="text-sm text-white/60 hover:text-white transition-colors duration-200">Online Learning</Link>
+              <Link href="/partnerships" className="text-sm text-white/60 hover:text-white transition-colors duration-200">Partnerships</Link>
+              <Link href="/lms" className="text-sm text-white/60 hover:text-white transition-colors duration-200">Self-Learning</Link>
             </div>
           </div>
 
@@ -149,7 +141,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-16 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-          <span className="text-[11px] text-white/35">&copy; 2026 Star Group. All rights reserved.</span>
+          <span className="text-[11px] text-white/35">&copy; 2026 Star. All rights reserved.</span>
           <div className="flex items-center gap-6">
             <Link href="/terms" className="text-[11px] text-white/35 hover:text-white/60 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-[11px] text-white/35 hover:text-white/60 transition-colors">Cookie Policy</Link>

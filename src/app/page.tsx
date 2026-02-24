@@ -4,14 +4,13 @@ import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { StatsCounter } from "@/components/stats-counter";
 import { ClientsTicker } from "@/components/clients-ticker";
 import { useEffect, useRef } from "react";
 
 const branches = [
-  { name: "Projects", href: "/projects", color: "var(--color-branch-projects)", logo: "/logo-projects.svg", logoWhite: "/logo-projects-white.svg", desc: "Complex government and organizational mandates through structured execution and governance." },
   { name: "Training", href: "/training", color: "var(--color-branch-training)", logo: "/logo-training.svg", logoWhite: "/logo-training-white.svg", desc: "Competency-based professional training programs that build practical skills and workforce readiness." },
   { name: "Education", href: "/education", color: "var(--color-branch-education)", logo: "/logo-education.svg", logoWhite: "/logo-education-white.svg", desc: "Academic partnerships, education pathways, and long-term learning programs aligned with national priorities." },
+  { name: "Projects", href: "/projects", color: "var(--color-branch-projects)", logo: "/logo-projects.svg", logoWhite: "/logo-projects-white.svg", desc: "Complex government and organizational mandates through structured execution and governance." },
   { name: "Events", href: "/events", color: "var(--color-branch-events)", logo: "/logo-events.svg", logoWhite: "/logo-events-white.svg", desc: "Full-service strategic events from concept development to end-to-end execution." },
 ];
 
@@ -101,21 +100,17 @@ export default function Home() {
 
       <ClientsTicker
         clients={[
-          "NEOM",
-          "Aramco",
-          "Red Sea Global",
-          "G20 Saudi Secretariat",
-          "Public Investment Fund",
-          "SABIC",
-          "Qiddiya",
-          "Ministry of Education",
-          "KAUST",
-          "British Council",
-          "Siemens",
-          "MDLBEAST",
-          "University of Oxford",
+          { name: "NEOM", logo: "/logos/neom.svg" },
+          { name: "Aramco", logo: "/logos/aramco.svg" },
+          { name: "Red Sea Global", logo: "/logos/red-sea-global.svg" },
+          { name: "Public Investment Fund", logo: "/logos/pif.svg" },
+          { name: "SABIC", logo: "/logos/sabic.svg" },
+          { name: "Qiddiya", logo: "/logos/qiddiya.svg" },
+          { name: "KAUST", logo: "/logos/kaust.svg" },
+          { name: "Siemens", logo: "/logos/siemens.svg" },
+          { name: "MDLBEAST", logo: "/logos/mdlbeast.svg" },
         ]}
-        label="Our partners"
+        label="Our clients"
       />
 
       {/* Statement */}
@@ -140,7 +135,7 @@ export default function Home() {
               We partner with public and private sector entities to design, operate, and deliver initiatives that require structure, scale, governance, and measurable impact.
               <span className="text-accent-orange">&rdquo;</span>
             </p>
-            <footer className="mt-8 text-subtle text-sm">Star Group, Est. 2024</footer>
+            <footer className="mt-8 text-subtle text-sm">Star, Est. 2024</footer>
           </motion.blockquote>
         </div>
       </section>
@@ -156,38 +151,23 @@ export default function Home() {
               <motion.div key={branch.href} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}>
                 <Link
                   href={branch.href}
-                  className="group block relative overflow-hidden rounded-2xl transition-all duration-400"
+                  className="group block relative overflow-hidden rounded-2xl border-2 border-transparent transition-all duration-300 hover:border-[var(--branch-color)]"
                   style={{ ["--branch-color" as string]: branch.color }}
                 >
-                  {/* Full branch-color background on hover */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl"
-                    style={{ backgroundColor: branch.color }}
-                  />
-
-                  <div className="relative flex items-start md:items-center justify-between gap-6 py-8 px-0 group-hover:px-8 transition-all duration-400" style={{ borderBottom: "1px solid var(--color-line)" }}>
+                  <div className="relative flex items-start md:items-center justify-between gap-6 py-8 px-4 group-hover:px-8 transition-all duration-300" style={{ borderBottom: "1px solid var(--color-line)" }}>
                     <div className="flex items-start md:items-center gap-6 md:gap-10 flex-1 flex-col md:flex-row">
-                      {/* Color logo (default) */}
                       <div className="relative h-20 md:h-24">
                         <Image
                           src={branch.logo}
                           alt={`Star ${branch.name}`}
                           width={320}
                           height={90}
-                          className="h-20 md:h-24 w-auto transition-opacity duration-300 group-hover:opacity-0"
-                        />
-                        <Image
-                          src={branch.logoWhite}
-                          alt=""
-                          width={320}
-                          height={90}
-                          className="h-20 md:h-24 w-auto absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                          aria-hidden
+                          className="h-20 md:h-24 w-auto"
                         />
                       </div>
-                      <p className="text-muted text-sm leading-relaxed md:ml-auto md:max-w-xs md:text-right transition-colors duration-300 group-hover:text-white/80">{branch.desc}</p>
+                      <p className="text-muted text-sm leading-relaxed md:ml-auto md:max-w-xs md:text-right transition-colors duration-300">{branch.desc}</p>
                     </div>
-                    <ArrowUpRight size={20} className="text-muted transition-colors duration-300 group-hover:text-white mt-1 md:mt-0 shrink-0" />
+                    <ArrowUpRight size={20} className="text-line transition-colors duration-300 group-hover:text-[var(--branch-color)] mt-1 md:mt-0 shrink-0" />
                   </div>
                 </Link>
               </motion.div>
@@ -196,13 +176,128 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Numbers */}
-      <StatsCounter stats={[
-        { value: 150, suffix: "+", label: "Projects delivered" },
-        { value: 40, suffix: "+", label: "Training programmes" },
-        { value: 12, label: "Countries reached" },
-        { value: 98, suffix: "%", label: "Client satisfaction" },
-      ]} />
+      {/* Partners */}
+      <section className="py-24 md:py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-16 max-w-2xl">
+            <span className="text-[11px] uppercase tracking-widest text-muted font-medium">Our partners</span>
+            <h2 className="text-fg text-3xl md:text-4xl font-medium tracking-tight mt-4 leading-tight">
+              Strategic alliances that<br />drive impact
+            </h2>
+          </motion.div>
+
+          {/* Exclusive Partners */}
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-accent-orange">Exclusive Partners</span>
+              <div className="flex-1 h-px bg-line" />
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {[
+                { name: "AHLEI", logo: "/logos/ahlei.svg" },
+                { name: "British Council", logo: "/logos/british-council.svg" },
+                { name: "University of Oxford", logo: "/logos/oxford.svg" },
+              ].map((partner, i) => (
+                <motion.div
+                  key={partner.name}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="relative group p-6 md:p-8 rounded-2xl border-2 border-accent-orange/20 bg-accent-orange/[0.03] hover:border-accent-orange/40 transition-all duration-300 flex flex-col items-start gap-4"
+                >
+                  <span className="absolute top-4 right-4 text-[8px] uppercase tracking-widest font-bold text-accent-orange/50">Exclusive</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={partner.logo} alt={partner.name} className="h-8 md:h-10 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
+                  <span className="text-muted text-sm font-medium">{partner.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Strategic Partners */}
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }} className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-fg/40">Strategic Partners</span>
+              <div className="flex-1 h-px bg-line" />
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { name: "Siemens", logo: "/logos/siemens.svg" },
+                { name: "Coursera", logo: "/logos/coursera.svg" },
+                { name: "Pearson", logo: "/logos/pearson.svg" },
+                { name: "City & Guilds", logo: "/logos/city-guilds.svg" },
+              ].map((partner, i) => (
+                <motion.div
+                  key={partner.name}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  className="group p-6 rounded-2xl border border-line hover:border-fg/20 transition-all duration-300 flex flex-col items-start gap-3"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={partner.logo} alt={partner.name} className="h-7 md:h-8 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
+                  <span className="text-muted text-sm font-medium">{partner.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Accreditation & Affiliations */}
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-fg/40">Accreditations &amp; Affiliations</span>
+              <div className="flex-1 h-px bg-line" />
+            </div>
+            <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+              {[
+                { name: "TVTC", logo: "/logos/tvtc.svg" },
+                { name: "HRDF", logo: "/logos/hrdf.svg" },
+                { name: "NCAAA", logo: "/logos/ncaaa.svg" },
+                { name: "ETEC", logo: "/logos/etec.svg" },
+                { name: "Saudi Tourism Authority", logo: "/logos/sta.svg" },
+              ].map((org, i) => (
+                <motion.div
+                  key={org.name}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.04 }}
+                  className="group flex flex-col items-center justify-center gap-2 p-6 rounded-xl bg-surface hover:bg-white transition-all duration-200 text-center"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={org.logo} alt={org.name} className="h-10 md:h-12 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
+                  <span className="text-[11px] font-medium text-muted">{org.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative py-24 md:py-32 px-6 overflow-hidden">
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+            <h2 className="text-fg text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight mb-6">
+              Let&apos;s build something<br />that matters
+            </h2>
+            <p className="text-muted text-base md:text-lg max-w-md mx-auto mb-10">
+              Whether it&apos;s a training programme, a national event, or a complex project — we&apos;re ready.
+            </p>
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              <Link href="/contact" className="group inline-flex items-center gap-3 bg-fg text-white px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 hover:bg-accent-orange">
+                Get in touch
+                <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+              </Link>
+              <Link href="/about" className="inline-flex items-center gap-3 border-2 border-line text-fg px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 hover:border-fg">
+                Learn more about Star
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
     </>
   );

@@ -28,16 +28,15 @@ export default function TrainingPage() {
       />
       <ClientsTicker
         clients={[
-          "Aramco",
-          "NEOM",
-          "Saudi Telecom",
-          "SABIC",
-          "Red Sea Global",
-          "Ministry of Education",
-          "Almarai",
-          "Siemens",
-          "Deloitte",
-          "PwC",
+          { name: "Aramco", logo: "/logos/aramco.svg" },
+          { name: "NEOM", logo: "/logos/neom.svg" },
+          { name: "STC", logo: "/logos/stc.svg" },
+          { name: "SABIC", logo: "/logos/sabic.svg" },
+          { name: "Red Sea Global", logo: "/logos/red-sea-global.svg" },
+          { name: "Almarai", logo: "/logos/almarai.svg" },
+          { name: "Siemens", logo: "/logos/siemens.svg" },
+          { name: "Deloitte", logo: "/logos/deloitte.svg" },
+          { name: "PwC", logo: "/logos/pwc.svg" },
         ]}
         branchColor={BRANCH_COLOR}
       />

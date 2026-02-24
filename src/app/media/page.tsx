@@ -11,8 +11,8 @@ const fadeUp = {
 };
 
 const logoAssets = [
-  { name: "Star Group Logo (Dark)", format: "SVG / PNG", file: "/logo-dark.svg" },
-  { name: "Star Group Logo (White)", format: "SVG / PNG", file: "/logo-white.svg" },
+  { name: "Star Logo (Dark)", format: "SVG / PNG", file: "/logo-dark.svg" },
+  { name: "Star Logo (White)", format: "SVG / PNG", file: "/logo-white.svg" },
   { name: "Star Projects Logo", format: "SVG / PNG", file: "/logo-projects.svg" },
   { name: "Star Training Logo", format: "SVG / PNG", file: "/logo-training.svg" },
   { name: "Star Education Logo", format: "SVG / PNG", file: "/logo-education.svg" },
@@ -24,7 +24,7 @@ const features = [
     icon: Monitor,
     type: "Conference",
     title: "Saudi Vision 2030 Project Delivery Summit",
-    description: "Star Group presented on structured governance frameworks for mega-project delivery at the annual PD Summit in Riyadh.",
+    description: "Star presented on structured governance frameworks for mega-project delivery at the annual PD Summit in Riyadh.",
     date: "January 2026",
   },
   {
@@ -37,7 +37,7 @@ const features = [
   {
     icon: Newspaper,
     type: "Newspaper",
-    title: "Star Group Expands Operations Across 12 Countries",
+    title: "Star Expands Operations Across 12 Countries",
     description: "Featured in Business Day covering Star's strategic expansion and growing portfolio of government and enterprise mandates.",
     date: "November 2025",
   },
@@ -79,7 +79,7 @@ export default function MediaPage() {
               Media &amp; News
             </h1>
             <p className="text-muted text-lg md:text-xl leading-relaxed mt-8 max-w-xl">
-              Explore where Star Group has been featured — from conferences and podcasts to newspapers and magazines.
+              Explore where Star has been featured — from conferences and podcasts to newspapers and magazines.
             </p>
           </motion.div>
         </div>

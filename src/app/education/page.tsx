@@ -28,16 +28,13 @@ export default function EducationPage() {
       />
       <ClientsTicker
         clients={[
-          "King Saud University",
-          "University of Oxford",
-          "Monash University",
-          "KAUST",
-          "UNESCO",
-          "British Council",
-          "Ministry of Education",
-          "Masdar Institute",
-          "Imperial College",
-          "GEMS Education",
+          { name: "University of Oxford", logo: "/logos/oxford.svg" },
+          { name: "Monash University", logo: "/logos/monash.svg" },
+          { name: "KAUST", logo: "/logos/kaust.svg" },
+          { name: "UNESCO", logo: "/logos/unesco.svg" },
+          { name: "British Council", logo: "/logos/british-council.svg" },
+          { name: "Imperial College", logo: "/logos/imperial.svg" },
+          { name: "GEMS Education", logo: "/logos/gems.svg" },
         ]}
         branchColor={BRANCH_COLOR}
       />

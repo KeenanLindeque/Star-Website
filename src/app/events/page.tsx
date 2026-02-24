@@ -28,16 +28,10 @@ export default function EventsPage() {
       />
       <ClientsTicker
         clients={[
-          "World Economic Forum",
-          "G20 Saudi Secretariat",
-          "Saudi Tourism Authority",
-          "Expo 2030",
-          "MDLBEAST",
-          "Diriyah Gate",
-          "Formula E",
-          "Riyadh Season",
-          "Ministry of Culture",
-          "KAEC",
+          { name: "World Economic Forum", logo: "/logos/wef.svg" },
+          { name: "MDLBEAST", logo: "/logos/mdlbeast.svg" },
+          { name: "Formula E", logo: "/logos/formula-e.svg" },
+          { name: "Diriyah Gate", logo: "/logos/diriyah.svg" },
         ]}
         branchColor={BRANCH_COLOR}
       />
