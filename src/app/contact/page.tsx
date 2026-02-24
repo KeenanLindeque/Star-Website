@@ -17,11 +17,30 @@ const contactInfo = [
   { icon: Clock, label: "Hours", value: "Mon – Fri, 08:00 – 17:00", href: undefined },
 ];
 
+function SpinningStar({ className = "" }: { className?: string }) {
+  return (
+    <motion.svg
+      viewBox="0 0 155 130"
+      fill="none"
+      className={className}
+      animate={{ rotate: 360 }}
+      transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+    >
+      <path
+        d="M153.7 75.5h-35.2c-1.16 0-1.74 1.4-.92 2.22l24.88 24.88c.51.51.51 1.33 0 1.84l-13.02 13.02c-.51.51-1.33.51-1.84 0l-24.89-24.89c-.82-.82-2.22-.24-2.22.92v35.2c0 .72-.58 1.3-1.3 1.3h-18.41c-.72 0-1.3-.58-1.3-1.3v-35.2c0-1.16-1.4-1.74-2.22-.92l-24.89 24.89c-.51.51-1.33.51-1.84 0l-13.02-13.02c-.51-.51-.51-1.33 0-1.84l16.8-16.8c8.74-8.74 19.98-7.66 19.98-7.66v-1.24c0-.77-.63-1.4-1.4-1.4H30.36c-.72 0-1.3-.58-1.3-1.3V56.71c0-.72.58-1.3 1.3-1.3h35.19c1.16 0 1.74-1.4.92-2.22L41.59 28.31c-.51-.51-.51-1.33 0-1.84l13.02-13.02c.51-.51 1.33-.51 1.84 0l24.89 24.89c.82.82 2.22.24 2.22-.92V1.3c0-.72.58-1.3 1.3-1.3h18.41c.72 0 1.3.58 1.3 1.3v35.2c0 1.16 1.4 1.74 2.22.92l24.89-24.89c.51-.51 1.33-.51 1.84 0l13.02 13.02c.51.51.51 1.33 0 1.84L129.73 44.2c-8.74 8.74-19.98 7.66-19.98 7.66v1.35c0 .72.58 1.3 1.3 1.3h46.71c.72 0 1.3.58 1.3 1.3v18.41c0 .72-.58 1.3-1.3 1.3Z"
+        fill="currentColor"
+      />
+    </motion.svg>
+  );
+}
+
 export default function ContactPage() {
   return (
     <div>
-      <section className="hero-gradient pt-40 pb-24 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="hero-gradient pt-40 pb-24 px-6 relative overflow-hidden">
+        <SpinningStar className="absolute text-fg opacity-[0.04] w-[700px] h-[700px] -right-[10%] top-1/2 -translate-y-1/2 pointer-events-none" />
+
+        <div className="relative max-w-6xl mx-auto">
           <div className="h-20 mb-10" />
           <motion.div {...fadeUp} className="max-w-3xl">
             <div className="accent-mark mb-8" />

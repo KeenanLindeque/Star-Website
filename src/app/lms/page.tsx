@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, ShoppingCart, BookOpen, Monitor, Award } from "lucide-react";
+import { ArrowUpRight, Clock, Award, Star } from "lucide-react";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -10,20 +10,13 @@ const fadeUp = {
   transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-const features = [
-  { icon: BookOpen, title: "Course Catalogue", description: "Browse our full range of professional certification programmes, from project management to specialised technical qualifications." },
-  { icon: Monitor, title: "Online Learning", description: "Access course materials, video lectures, assessments, and resources through our integrated learning management system." },
-  { icon: ShoppingCart, title: "Simple Checkout", description: "Purchase certifications directly through our secure e-commerce platform powered by Shopify, with multiple payment options." },
-  { icon: Award, title: "Digital Credentials", description: "Receive verifiable digital certificates upon completion, recognised by industry bodies and employers worldwide." },
-];
-
-const certifications = [
-  { name: "Project Management Professional (PMP)", provider: "PMI", category: "Project Management" },
-  { name: "PRINCE2 Foundation & Practitioner", provider: "Axelos", category: "Project Management" },
-  { name: "Certified ScrumMaster (CSM)", provider: "Scrum Alliance", category: "Agile" },
-  { name: "ITIL 4 Foundation", provider: "Axelos", category: "IT Service Management" },
-  { name: "Six Sigma Green Belt", provider: "ASQ", category: "Quality Management" },
-  { name: "Certified Business Analysis Professional", provider: "IIBA", category: "Business Analysis" },
+const courses = [
+  { name: "Project Management Professional (PMP)", provider: "PMI", category: "Project Management", duration: "35 hours", level: "Advanced", color: "#0088e0" },
+  { name: "PRINCE2 Foundation & Practitioner", provider: "Axelos", category: "Project Management", duration: "40 hours", level: "Foundation", color: "#6d8d9c" },
+  { name: "Certified ScrumMaster (CSM)", provider: "Scrum Alliance", category: "Agile", duration: "16 hours", level: "Foundation", color: "#1d9b1d" },
+  { name: "ITIL 4 Foundation", provider: "Axelos", category: "IT Service Management", duration: "24 hours", level: "Foundation", color: "#9800d1" },
+  { name: "Six Sigma Green Belt", provider: "ASQ", category: "Quality Management", duration: "30 hours", level: "Intermediate", color: "#0088e0" },
+  { name: "Certified Business Analysis Professional", provider: "IIBA", category: "Business Analysis", duration: "35 hours", level: "Advanced", color: "#ff6f2a" },
 ];
 
 export default function LMSPage() {
@@ -38,77 +31,79 @@ export default function LMSPage() {
               className="text-fg leading-[1.08]"
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 500, letterSpacing: "-0.03em" }}
             >
-              LMS &amp; Professional Certifications
+              Online Learning
             </h1>
             <p className="text-muted text-lg md:text-xl leading-relaxed mt-8 max-w-xl">
-              Access world-class professional certifications through our integrated learning management system and e-commerce platform.
+              Access world-class professional certifications through our integrated learning platform.
             </p>
           </motion.div>
         </div>
       </section>
 
+      {/* Course Grid */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp} className="mb-16">
-            <span className="text-[11px] uppercase tracking-widest text-muted font-medium">Platform</span>
+            <span className="text-[11px] uppercase tracking-widest text-muted font-medium">Certifications</span>
             <h2 className="text-fg text-3xl md:text-4xl font-medium tracking-tight mt-4">
-              Learn, certify, advance
-            </h2>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {features.map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="p-8 rounded-2xl bg-surface"
-              >
-                <feature.icon size={24} className="text-accent-orange mb-4" />
-                <h3 className="text-fg text-lg font-medium mb-3">{feature.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="dark-section py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp}>
-            <span className="text-[11px] uppercase tracking-widest text-white/50 font-medium">Certifications</span>
-            <h2 className="text-white text-3xl md:text-4xl font-medium tracking-tight mt-4 mb-16">
               Available programmes
             </h2>
           </motion.div>
-          <div className="flex flex-col">
-            {certifications.map((cert, i) => (
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {courses.map((course, i) => (
               <motion.div
-                key={cert.name}
-                initial={{ opacity: 0, y: 16 }}
+                key={course.name}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group flex items-center justify-between py-6"
-                style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+                className="group rounded-2xl bg-surface overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer"
               >
-                <div>
-                  <h3 className="text-white text-lg font-medium">{cert.name}</h3>
-                  <p className="text-white/50 text-sm mt-1">
-                    {cert.provider} &middot; {cert.category}
-                  </p>
+                {/* Thumbnail header */}
+                <div
+                  className="h-40 flex items-center justify-center relative overflow-hidden"
+                  style={{ backgroundColor: `${course.color}10` }}
+                >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundColor: `${course.color}18` }} />
+                  <div className="relative z-10 text-center">
+                    <span className="text-[10px] uppercase tracking-widest font-semibold px-3 py-1 rounded-full" style={{ backgroundColor: `${course.color}20`, color: course.color }}>
+                      {course.category}
+                    </span>
+                    <div className="mt-3">
+                      <Award size={32} style={{ color: course.color }} className="mx-auto" />
+                    </div>
+                  </div>
                 </div>
-                <ArrowUpRight size={20} className="text-white/40 shrink-0" />
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-fg text-base font-medium leading-snug mb-3 group-hover:text-accent-orange transition-colors">
+                    {course.name}
+                  </h3>
+                  <p className="text-muted text-xs mb-4">{course.provider}</p>
+
+                  <div className="flex items-center justify-between text-xs text-muted">
+                    <div className="flex items-center gap-1.5">
+                      <Clock size={12} />
+                      <span>{course.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Star size={12} />
+                      <span>{course.level}</span>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
+
           <motion.div {...fadeUp} className="mt-16 text-center">
             <a
               href="#"
-              className="inline-flex items-center gap-3 bg-accent-orange text-white px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 hover:opacity-90"
+              className="inline-flex items-center gap-3 bg-fg text-white px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 hover:bg-accent-orange"
             >
-              Visit our Shopify store
+              Visit our store
               <ArrowUpRight size={16} />
             </a>
           </motion.div>

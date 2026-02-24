@@ -79,17 +79,55 @@ export default function MediaPage() {
               Media &amp; News
             </h1>
             <p className="text-muted text-lg md:text-xl leading-relaxed mt-8 max-w-xl">
-              Download our brand assets, and explore where Star Group has been featured — from conferences and podcasts to newspapers and magazines.
+              Explore where Star Group has been featured — from conferences and podcasts to newspapers and magazines.
             </p>
           </motion.div>
         </div>
       </section>
 
+      {/* Featured In — now first */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp} className="mb-16">
-            <span className="text-[11px] uppercase tracking-widest text-muted font-medium">Brand assets</span>
+            <span className="text-[11px] uppercase tracking-widest text-muted font-medium">Featured in</span>
             <h2 className="text-fg text-3xl md:text-4xl font-medium tracking-tight mt-4">
+              Conferences, podcasts &amp; press
+            </h2>
+          </motion.div>
+          <div className="space-y-4">
+            {features.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+                className="group flex items-start gap-6 p-6 rounded-2xl bg-surface hover:shadow-md transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-bg">
+                  <item.icon size={20} className="text-accent-orange" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-[10px] uppercase tracking-widest text-accent-orange font-medium">{item.type}</span>
+                    <span className="text-muted text-xs">{item.date}</span>
+                  </div>
+                  <h3 className="text-fg text-lg font-medium mb-2">{item.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed">{item.description}</p>
+                </div>
+                <ArrowUpRight size={18} className="text-muted shrink-0 mt-1" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Brand Assets — now second */}
+      <section className="dark-section py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div {...fadeUp} className="mb-16">
+            <span className="text-[11px] uppercase tracking-widest text-white/50 font-medium">Brand assets</span>
+            <h2 className="text-white text-3xl md:text-4xl font-medium tracking-tight mt-4">
               Downloadable logos
             </h2>
           </motion.div>
@@ -103,53 +141,17 @@ export default function MediaPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="group flex items-center gap-4 p-6 rounded-2xl bg-surface hover:bg-fg transition-all duration-300 cursor-pointer"
-              >
-                <div className="w-10 h-10 rounded-xl bg-bg flex items-center justify-center shrink-0 group-hover:bg-white/10 transition-colors">
-                  <Download size={18} className="text-muted group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <h3 className="text-fg text-sm font-medium group-hover:text-white transition-colors">{logo.name}</h3>
-                  <p className="text-subtle text-xs mt-0.5 group-hover:text-white/50 transition-colors">{logo.format}</p>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="dark-section py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp} className="mb-16">
-            <span className="text-[11px] uppercase tracking-widest text-white/50 font-medium">Featured in</span>
-            <h2 className="text-white text-3xl md:text-4xl font-medium tracking-tight mt-4">
-              Conferences, podcasts &amp; press
-            </h2>
-          </motion.div>
-          <div className="space-y-6">
-            {features.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="group flex items-start gap-6 p-6 rounded-2xl transition-all duration-300"
+                className="group flex items-center gap-4 p-6 rounded-2xl transition-all duration-300 cursor-pointer"
                 style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
               >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
-                  <item.icon size={20} className="text-accent-orange" />
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
+                  <Download size={18} className="text-white/60 group-hover:text-accent-orange transition-colors" />
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-[10px] uppercase tracking-widest text-accent-orange font-medium">{item.type}</span>
-                    <span className="text-white/30 text-xs">{item.date}</span>
-                  </div>
-                  <h3 className="text-white text-lg font-medium mb-2">{item.title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                <div>
+                  <h3 className="text-white text-sm font-medium">{logo.name}</h3>
+                  <p className="text-white/40 text-xs mt-0.5">{logo.format}</p>
                 </div>
-                <ArrowUpRight size={18} className="text-white/30 shrink-0 mt-1" />
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </div>
