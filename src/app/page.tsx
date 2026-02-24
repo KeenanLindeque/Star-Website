@@ -99,17 +99,7 @@ export default function Home() {
       </section>
 
       <ClientsTicker
-        clients={[
-          { name: "NEOM", logo: "/logos/neom.svg" },
-          { name: "Aramco", logo: "/logos/aramco.svg" },
-          { name: "Red Sea Global", logo: "/logos/red-sea-global.svg" },
-          { name: "Public Investment Fund", logo: "/logos/pif.svg" },
-          { name: "SABIC", logo: "/logos/sabic.svg" },
-          { name: "Qiddiya", logo: "/logos/qiddiya.svg" },
-          { name: "KAUST", logo: "/logos/kaust.svg" },
-          { name: "Siemens", logo: "/logos/siemens.svg" },
-          { name: "MDLBEAST", logo: "/logos/mdlbeast.svg" },
-        ]}
+        clients={["NEOM", "Aramco", "Red Sea Global", "Public Investment Fund", "SABIC", "Qiddiya", "KAUST", "Siemens", "MDLBEAST"]}
         label="Our clients"
       />
 
@@ -193,23 +183,17 @@ export default function Home() {
               <div className="flex-1 h-px bg-line" />
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {[
-                { name: "AHLEI", logo: "/logos/ahlei.svg" },
-                { name: "British Council", logo: "/logos/british-council.svg" },
-                { name: "University of Oxford", logo: "/logos/oxford.svg" },
-              ].map((partner, i) => (
+              {["AHLEI", "British Council", "University of Oxford"].map((partner, i) => (
                 <motion.div
-                  key={partner.name}
+                  key={partner}
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="relative group p-6 md:p-8 rounded-2xl border-2 border-accent-orange/20 bg-accent-orange/[0.03] hover:border-accent-orange/40 transition-all duration-300 flex flex-col items-start gap-4"
+                  className="relative group p-6 md:p-8 rounded-2xl border-2 border-accent-orange/20 bg-accent-orange/[0.03] hover:border-accent-orange/40 transition-all duration-300"
                 >
                   <span className="absolute top-4 right-4 text-[8px] uppercase tracking-widest font-bold text-accent-orange/50">Exclusive</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={partner.logo} alt={partner.name} className="h-8 md:h-10 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
-                  <span className="text-muted text-sm font-medium">{partner.name}</span>
+                  <span className="text-fg text-lg md:text-xl font-semibold tracking-tight">{partner}</span>
                 </motion.div>
               ))}
             </div>
@@ -222,23 +206,16 @@ export default function Home() {
               <div className="flex-1 h-px bg-line" />
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { name: "Siemens", logo: "/logos/siemens.svg" },
-                { name: "Coursera", logo: "/logos/coursera.svg" },
-                { name: "Pearson", logo: "/logos/pearson.svg" },
-                { name: "City & Guilds", logo: "/logos/city-guilds.svg" },
-              ].map((partner, i) => (
+              {["Siemens", "Coursera", "Pearson", "City & Guilds"].map((partner, i) => (
                 <motion.div
-                  key={partner.name}
+                  key={partner}
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
-                  className="group p-6 rounded-2xl border border-line hover:border-fg/20 transition-all duration-300 flex flex-col items-start gap-3"
+                  className="group p-6 rounded-2xl border border-line hover:border-fg/20 transition-all duration-300"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={partner.logo} alt={partner.name} className="h-7 md:h-8 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
-                  <span className="text-muted text-sm font-medium">{partner.name}</span>
+                  <span className="text-fg text-base font-semibold tracking-tight">{partner}</span>
                 </motion.div>
               ))}
             </div>
@@ -251,24 +228,16 @@ export default function Home() {
               <div className="flex-1 h-px bg-line" />
             </div>
             <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
-              {[
-                { name: "TVTC", logo: "/logos/tvtc.svg" },
-                { name: "HRDF", logo: "/logos/hrdf.svg" },
-                { name: "NCAAA", logo: "/logos/ncaaa.svg" },
-                { name: "ETEC", logo: "/logos/etec.svg" },
-                { name: "Saudi Tourism Authority", logo: "/logos/sta.svg" },
-              ].map((org, i) => (
+              {["TVTC", "HRDF", "NCAAA", "ETEC", "Saudi Tourism Authority"].map((org, i) => (
                 <motion.div
-                  key={org.name}
+                  key={org}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.04 }}
-                  className="group flex flex-col items-center justify-center gap-2 p-6 rounded-xl bg-surface hover:bg-white transition-all duration-200 text-center"
+                  className="flex items-center justify-center p-4 rounded-xl bg-surface hover:bg-white transition-all duration-200 text-center"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={org.logo} alt={org.name} className="h-10 md:h-12 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
-                  <span className="text-[11px] font-medium text-muted">{org.name}</span>
+                  <span className="text-sm font-semibold text-muted">{org}</span>
                 </motion.div>
               ))}
             </div>

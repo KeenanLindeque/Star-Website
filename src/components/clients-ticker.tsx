@@ -1,21 +1,16 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import Image from "next/image";
-
-interface Client {
-  name: string;
-  logo: string;
-}
 
 interface ClientsTickerProps {
-  clients: Client[];
+  clients: string[];
   branchColor?: string;
   label?: string;
 }
 
 export function ClientsTicker({
   clients,
+  branchColor = "var(--color-fg)",
   label = "Trusted by",
 }: ClientsTickerProps) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -61,17 +56,14 @@ export function ClientsTicker({
         <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 z-10 bg-gradient-to-l from-bg to-transparent" />
 
         <div ref={trackRef} className="flex items-center gap-14 md:gap-20 whitespace-nowrap will-change-transform">
-          {doubled.map((client, i) => (
-            <div key={`${client.name}-${i}`} className="shrink-0 flex items-center h-10 md:h-12 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
-              <Image
-                src={client.logo}
-                alt={client.name}
-                width={120}
-                height={48}
-                className="h-8 md:h-10 w-auto object-contain"
-                unoptimized
-              />
-            </div>
+          {doubled.map((name, i) => (
+            <span
+              key={`${name}-${i}`}
+              className="shrink-0 text-lg md:text-xl font-semibold tracking-tight transition-colors duration-300 select-none"
+              style={{ color: `color-mix(in srgb, ${branchColor} 35%, var(--color-muted))` }}
+            >
+              {name}
+            </span>
           ))}
         </div>
       </div>
