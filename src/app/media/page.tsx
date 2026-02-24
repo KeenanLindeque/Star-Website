@@ -102,20 +102,20 @@ export default function MediaPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="group flex items-start gap-6 p-6 rounded-2xl bg-surface hover:shadow-md transition-all duration-300"
+                className="group flex items-start gap-6 p-6 rounded-2xl bg-surface hover:bg-accent-orange transition-all duration-300 cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-bg">
-                  <item.icon size={20} className="text-accent-orange" />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-bg group-hover:bg-white/20 transition-colors duration-300">
+                  <item.icon size={20} className="text-accent-orange group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-[10px] uppercase tracking-widest text-accent-orange font-medium">{item.type}</span>
-                    <span className="text-muted text-xs">{item.date}</span>
+                    <span className="text-[10px] uppercase tracking-widest text-accent-orange font-medium group-hover:text-white transition-colors duration-300">{item.type}</span>
+                    <span className="text-muted text-xs group-hover:text-white/50 transition-colors duration-300">{item.date}</span>
                   </div>
-                  <h3 className="text-fg text-lg font-medium mb-2">{item.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed">{item.description}</p>
+                  <h3 className="text-fg text-lg font-medium mb-2 group-hover:text-white transition-colors duration-300">{item.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">{item.description}</p>
                 </div>
-                <ArrowUpRight size={18} className="text-muted shrink-0 mt-1" />
+                <ArrowUpRight size={18} className="text-muted shrink-0 mt-1 group-hover:text-white transition-colors duration-300" />
               </motion.div>
             ))}
           </div>
@@ -123,7 +123,7 @@ export default function MediaPage() {
       </section>
 
       {/* Brand Assets — now second */}
-      <section className="dark-section py-24 px-6">
+      <section id="brand-assets" className="dark-section py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp} className="mb-16">
             <span className="text-[11px] uppercase tracking-widest text-white/50 font-medium">Brand assets</span>

@@ -67,18 +67,18 @@ export default function ContactPage() {
               </h2>
               <div className="space-y-6">
                 {contactInfo.map((item) => (
-                  <div key={item.label} className="flex items-start gap-4">
-                    <div className="icon-box shrink-0">
-                      <item.icon size={18} className="text-muted" />
+                  <div key={item.label} className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-surface flex items-center justify-center shrink-0">
+                      <item.icon size={18} className="text-fg" />
                     </div>
                     <div>
-                      <span className="text-[11px] uppercase tracking-widest text-muted font-medium">{item.label}</span>
+                      <span className="text-[11px] uppercase tracking-widest text-muted font-medium block leading-none">{item.label}</span>
                       {item.href ? (
-                        <a href={item.href} className="block text-fg text-lg font-medium hover:text-accent-orange transition-colors mt-1">
+                        <a href={item.href} className="block text-fg text-lg font-medium hover:text-accent-orange transition-colors mt-1 leading-snug">
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-fg text-lg font-medium mt-1">{item.value}</p>
+                        <p className="text-fg text-lg font-medium mt-1 leading-snug">{item.value}</p>
                       )}
                     </div>
                   </div>

@@ -127,11 +127,12 @@ export function CaseStudies({ studies, branchColor = "var(--color-fg)" }: CaseSt
               >
                 {/* Detail view */}
                 <div className="grid md:grid-cols-5 gap-8 md:gap-12">
-                  {/* Large image — spans 3 cols */}
+                  {/* Large image — spans 3 cols, click to advance */}
                   <div className="md:col-span-3">
                     <div
-                      className="rounded-2xl overflow-hidden relative"
+                      className="rounded-2xl overflow-hidden relative cursor-pointer group/img"
                       style={{ height: FIXED_HEIGHT }}
+                      onClick={() => { setExpanded(false); go(1); }}
                     >
                       <Image
                         src={study.image}
@@ -139,6 +140,20 @@ export function CaseStudies({ studies, branchColor = "var(--color-fg)" }: CaseSt
                         fill
                         className="object-cover"
                       />
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setExpanded(false); go(-1); }}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 hover:bg-black/50"
+                        aria-label="Previous"
+                      >
+                        <ArrowLeft size={18} />
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); go(1); setExpanded(false); }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 hover:bg-black/50"
+                        aria-label="Next"
+                      >
+                        <ArrowRight size={18} />
+                      </button>
                     </div>
                   </div>
 
@@ -221,8 +236,11 @@ export function CaseStudies({ studies, branchColor = "var(--color-fg)" }: CaseSt
                   }}
                 >
                   <div className="grid md:grid-cols-2 gap-0 h-full">
-                    {/* Image panel */}
-                    <div className="relative h-full overflow-hidden">
+                    {/* Image panel — click to advance */}
+                    <div
+                      className="relative h-full overflow-hidden cursor-pointer group/img"
+                      onClick={() => go(1)}
+                    >
                       <Image
                         src={study.image}
                         alt={study.project}
@@ -235,6 +253,21 @@ export function CaseStudies({ studies, branchColor = "var(--color-fg)" }: CaseSt
                           background: `linear-gradient(135deg, ${branchColor}, transparent)`,
                         }}
                       />
+                      {/* Left / Right arrows on image */}
+                      <button
+                        onClick={(e) => { e.stopPropagation(); go(-1); }}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 hover:bg-black/50"
+                        aria-label="Previous"
+                      >
+                        <ArrowLeft size={18} />
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); go(1); }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 hover:bg-black/50"
+                        aria-label="Next"
+                      >
+                        <ArrowRight size={18} />
+                      </button>
                     </div>
 
                     {/* Content panel */}

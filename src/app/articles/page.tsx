@@ -87,11 +87,11 @@ export default function ArticlesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="group block p-8 rounded-2xl bg-surface hover:bg-fg transition-all duration-400 cursor-pointer"
+                className="group block p-8 rounded-2xl bg-surface hover:bg-accent-orange transition-all duration-300 cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span
-                    className="text-[11px] uppercase tracking-widest font-medium px-3 py-1 rounded-full group-hover:text-white transition-colors"
+                    className="text-[11px] uppercase tracking-widest font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-white group-hover:text-accent-orange"
                     style={{ backgroundColor: "var(--color-line)", color: "var(--color-muted)" }}
                   >
                     {article.category}

@@ -72,6 +72,25 @@ export default function TermsPage() {
         </div>
       </section>
 
+      {/* Saudi compliance banner */}
+      <section className="py-12 px-6" style={{ backgroundColor: "var(--color-surface)" }}>
+        <div className="max-w-4xl mx-auto">
+          <motion.div {...fadeUp} className="flex items-start gap-5 md:items-center md:gap-6">
+            <div className="w-11 h-11 rounded-xl bg-fg flex items-center justify-center shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-fg text-base font-medium mb-1">Fully compliant with Saudi data protection regulations</h3>
+              <p className="text-muted text-sm leading-relaxed">
+                Star Group operates in full compliance with the Kingdom of Saudi Arabia&apos;s Personal Data Protection Law (PDPL) and all applicable data governance frameworks. We ensure the privacy, confidentiality, and security of all personal data processed across our operations, applying the highest standards of data protection to every engagement.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           {sections.map((section, i) => (
