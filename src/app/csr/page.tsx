@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { CaseStudies } from "@/components/case-studies";
 
@@ -86,7 +87,7 @@ export default function CSRPage() {
         </div>
       </section>
 
-      <CaseStudies studies={initiatives} branchColor="#ff6f2a" />
+      <Suspense><CaseStudies studies={initiatives} branchColor="#ff6f2a" /></Suspense>
 
       <section className="dark-section py-24 px-6">
         <div className="max-w-6xl mx-auto">

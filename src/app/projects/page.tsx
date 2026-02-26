@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { BranchHero } from "@/components/branch-hero";
 import { CaseStudies } from "@/components/case-studies";
 import { SectionDivider } from "@/components/section-divider";
@@ -79,7 +80,9 @@ export default function ProjectsPage() {
         clients={["NEOM", "Red Sea Global", "Qiddiya", "ROSHN", "Public Investment Fund", "Aramco", "ACWA Power", "Lucid Motors"]}
         branchColor={BRANCH_COLOR}
       />
-      <CaseStudies studies={caseStudies} branchColor={BRANCH_COLOR} />
+      <Suspense>
+        <CaseStudies studies={caseStudies} branchColor={BRANCH_COLOR} />
+      </Suspense>
       <StatsCounter
         stats={[
           { value: 150, suffix: "+", label: "Projects delivered" },

@@ -64,7 +64,7 @@ const AUTO_INTERVAL = 7000;
 
 export function FeaturedCaseStudies() {
   const [active, setActive] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setInterval>>();
+  const timerRef = useRef<ReturnType<typeof setInterval>>(null);
   const router = useRouter();
   const [progressKey, setProgressKey] = useState(0);
 
@@ -75,11 +75,11 @@ export function FeaturedCaseStudies() {
 
   useEffect(() => {
     timerRef.current = setInterval(() => advance(), AUTO_INTERVAL);
-    return () => clearInterval(timerRef.current);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [advance]);
 
   const resetTimer = useCallback(() => {
-    clearInterval(timerRef.current);
+    if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => advance(), AUTO_INTERVAL);
   }, [advance]);
 

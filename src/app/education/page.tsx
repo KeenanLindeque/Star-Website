@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { BranchHero } from "@/components/branch-hero";
 import { CaseStudies } from "@/components/case-studies";
 import { SectionDivider } from "@/components/section-divider";
@@ -78,7 +79,9 @@ export default function EducationPage() {
         clients={["University of Oxford", "Monash University", "KAUST", "UNESCO", "British Council", "Imperial College", "GEMS Education"]}
         branchColor={BRANCH_COLOR}
       />
-      <CaseStudies studies={caseStudies} branchColor={BRANCH_COLOR} />
+      <Suspense>
+        <CaseStudies studies={caseStudies} branchColor={BRANCH_COLOR} />
+      </Suspense>
       <StatsCounter
         stats={[
           { value: 20, suffix: "+", label: "Academic partnerships" },
