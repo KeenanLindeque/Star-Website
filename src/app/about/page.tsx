@@ -40,7 +40,7 @@ export default function AboutPage() {
               About Star
             </h1>
             <p className="text-muted text-lg md:text-xl leading-relaxed mt-8 max-w-xl">
-              A multi-disciplinary group delivering training, education, strategic events, and complex project execution for governments and organizations worldwide.
+              A multi-disciplinary organisation delivering training, education, strategic events, and complex project execution for governments and organisations worldwide.
             </p>
           </motion.div>
         </div>
@@ -52,7 +52,7 @@ export default function AboutPage() {
           <motion.div {...fadeUp} className="text-center mb-16">
             <span className="text-[11px] uppercase tracking-widest text-muted font-medium">How we work</span>
             <h2 className="text-fg text-3xl md:text-4xl font-medium tracking-tight mt-4">
-              One group, four branches
+              One vision, four branches
             </h2>
           </motion.div>
 

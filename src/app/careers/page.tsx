@@ -15,8 +15,8 @@ const openings = [
   { title: "Training Programme Designer", branch: "Training", location: "Riyadh, KSA", type: "Full-time" },
   { title: "Events Coordinator", branch: "Events", location: "Riyadh, KSA", type: "Full-time" },
   { title: "Education Partnerships Lead", branch: "Education", location: "Remote", type: "Full-time" },
-  { title: "Business Development Manager", branch: "Group", location: "Riyadh, KSA", type: "Full-time" },
-  { title: "Digital Content Specialist", branch: "Group", location: "Remote", type: "Contract" },
+  { title: "Business Development Manager", branch: "Star", location: "Riyadh, KSA", type: "Full-time" },
+  { title: "Digital Content Specialist", branch: "Star", location: "Remote", type: "Contract" },
 ];
 
 export default function CareersPage() {

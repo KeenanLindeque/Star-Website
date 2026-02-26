@@ -1,11 +1,12 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { ClientsTicker } from "@/components/clients-ticker";
-import { useEffect, useRef } from "react";
+import { FeaturedCaseStudies } from "@/components/featured-case-studies";
+import { useEffect, useRef, useState } from "react";
 
 const branches = [
   { name: "Training", href: "/training", color: "var(--color-branch-training)", logo: "/logo-training.svg", logoWhite: "/logo-training-white.svg", desc: "Competency-based professional training programs that build practical skills and workforce readiness." },
@@ -27,7 +28,152 @@ function LogoStar({ className = "", style = {} }: { className?: string; style?: 
   );
 }
 
+const STAR_PATH = "M153.7 75.5h-35.2c-1.16 0-1.74 1.4-.92 2.22l24.88 24.88c.51.51.51 1.33 0 1.84l-13.02 13.02c-.51.51-1.33.51-1.84 0l-24.89-24.89c-.82-.82-2.22-.24-2.22.92v35.2c0 .72-.58 1.3-1.3 1.3h-18.41c-.72 0-1.3-.58-1.3-1.3v-35.2c0-1.16-1.4-1.74-2.22-.92l-24.89 24.89c-.51.51-1.33.51-1.84 0l-13.02-13.02c-.51-.51-.51-1.33 0-1.84l16.8-16.8c8.74-8.74 19.98-7.66 19.98-7.66v-1.24c0-.77-.63-1.4-1.4-1.4H30.36c-.72 0-1.3-.58-1.3-1.3V56.71c0-.72.58-1.3 1.3-1.3h35.19c1.16 0 1.74-1.4.92-2.22L41.59 28.31c-.51-.51-.51-1.33 0-1.84l13.02-13.02c.51-.51 1.33-.51 1.84 0l24.89 24.89c.82.82 2.22.24 2.22-.92V1.3c0-.72.58-1.3 1.3-1.3h18.41c.72 0 1.3.58 1.3 1.3v35.2c0 1.16 1.4 1.74 2.22.92l24.89-24.89c.51-.51 1.33-.51 1.84 0l13.02 13.02c.51.51.51 1.33 0 1.84L129.73 44.2c-8.74 8.74-19.98 7.66-19.98 7.66v1.35c0 .72.58 1.3 1.3 1.3h46.71c.72 0 1.3.58 1.3 1.3v18.41c0 .72-.58 1.3-1.3 1.3Z";
+
+const armClips = [
+  { id: "arm-top", points: "77.5,65 0,0 155,0" },
+  { id: "arm-right", points: "77.5,65 155,0 155,130" },
+  { id: "arm-bottom", points: "77.5,65 155,130 0,130" },
+  { id: "arm-left", points: "77.5,65 0,130 0,0" },
+];
+
+function StarArms({ activeArm, colors, className = "" }: { activeArm: number | null; colors: string[]; className?: string }) {
+  return (
+    <svg viewBox="0 0 155 130" fill="none" className={className}>
+      <defs>
+        {armClips.map((clip) => (
+          <clipPath key={clip.id} id={clip.id}>
+            <polygon points={clip.points} />
+          </clipPath>
+        ))}
+      </defs>
+      {armClips.map((clip, i) => (
+        <g key={clip.id} clipPath={`url(#${clip.id})`}>
+          <path
+            d={STAR_PATH}
+            fill={activeArm === i ? colors[i] : "var(--color-fg)"}
+            className="transition-all duration-700 ease-out"
+            style={{
+              opacity: activeArm === i ? 0.18 : 0.04,
+              filter: activeArm === i ? `drop-shadow(0 0 40px ${colors[i]})` : "none",
+            }}
+          />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+const partners = [
+  {
+    name: "World Economic Forum",
+    logo: "/partner-wef.svg",
+    headline: "Shaping global workforce policy",
+    description: "Collaborating on workforce development initiatives and shaping global education policy through strategic dialogue and knowledge exchange.",
+  },
+  {
+    name: "HRCI",
+    logo: "/partner-hrci.svg",
+    headline: "Elevating HR standards regionally",
+    description: "Delivering internationally recognised HR certification programs that elevate professional standards across the region.",
+  },
+  {
+    name: "AHLEI",
+    logo: "/partner-ahlei.svg",
+    headline: "Advancing hospitality excellence",
+    description: "Providing accredited hospitality training and certification pathways that prepare talent for the tourism and lodging industry.",
+  },
+];
+
+function PartnersSection() {
+  const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    if (hovered) return;
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % partners.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [hovered]);
+
+  return (
+    <section className="py-20 md:py-28 px-6">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-14"
+        >
+          <span className="text-[11px] uppercase tracking-widest text-muted font-medium">Partners we&apos;re proud of</span>
+          <div className="mt-3 overflow-hidden" style={{ height: "2.4em" }}>
+            <AnimatePresence mode="wait">
+              <motion.h2
+                key={partners[active].headline}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                className="text-2xl md:text-3xl font-medium tracking-tight text-fg"
+              >
+                {partners[active].headline}
+              </motion.h2>
+            </AnimatePresence>
+          </div>
+        </motion.div>
+
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-5"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          {partners.map((p, i) => {
+            const isActive = active === i;
+            return (
+              <motion.button
+                key={p.name}
+                onClick={() => setActive(i)}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className={`group relative text-left rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden ${
+                  isActive
+                    ? "border-fg/15 bg-fg/[0.03] shadow-sm"
+                    : "border-line hover:border-fg/10 bg-transparent"
+                }`}
+              >
+                <div className="p-8 md:p-10 flex flex-col gap-5">
+                  <div className="flex items-center justify-center py-6">
+                    <Image
+                      src={p.logo}
+                      alt={p.name}
+                      width={300}
+                      height={100}
+                      className="h-20 md:h-24 w-auto object-contain transition-[filter] duration-500"
+                      style={{ filter: isActive ? "none" : "brightness(0) opacity(0.35)" }}
+                    />
+                  </div>
+
+                  <p className={`text-[13px] leading-relaxed transition-colors duration-300 ${
+                    isActive ? "text-muted" : "text-fg/20 group-hover:text-fg/30"
+                  }`}>
+                    {p.description}
+                  </p>
+                </div>
+              </motion.button>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
+  const [hoveredBranch, setHoveredBranch] = useState<number | null>(null);
   const heroRef = useRef<HTMLElement>(null);
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
@@ -86,7 +232,7 @@ export default function Home() {
               measurable impact
             </h1>
             <p className="text-muted text-lg md:text-xl leading-relaxed mt-8 max-w-xl">
-              Star is a multi-disciplinary group delivering training, education, strategic events, and complex project execution for governments and organizations.
+              Star is a multi-disciplinary organisation delivering training, education, strategic events, and complex project execution for governments and organisations.
             </p>
             <div className="mt-10">
               <a href="#branches" onClick={(e) => { e.preventDefault(); document.getElementById("branches")?.scrollIntoView({ behavior: "smooth" }); }} className="group inline-flex items-center gap-3 bg-fg text-white px-7 py-3.5 rounded-full text-sm font-medium transition-all duration-300 hover:bg-accent-orange cursor-pointer">
@@ -131,130 +277,71 @@ export default function Home() {
       </section>
 
       {/* Branches */}
-      <section id="branches" className="py-24 px-6">
+      <section id="branches" className="pt-24 pb-12 md:pt-32 md:pb-16 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="mb-16">
-            <span className="text-[11px] uppercase tracking-widest text-muted font-medium">Our branches</span>
+            <span className="text-[11px] uppercase tracking-widest text-muted font-medium">What we do</span>
+            <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-fg mt-3">Meet the Star ecosystem</h2>
           </motion.div>
-          <div className="flex flex-col">
-            {branches.map((branch, i) => (
-              <motion.div key={branch.href} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}>
-                <Link
-                  href={branch.href}
-                  className="group block relative overflow-hidden rounded-2xl border-2 border-transparent transition-all duration-300 hover:border-[var(--branch-color)]"
-                  style={{ ["--branch-color" as string]: branch.color }}
+
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+              {branches.map((branch, i) => (
+                <motion.div
+                  key={branch.href}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
                 >
-                  <div className="relative flex items-start md:items-center justify-between gap-6 py-8 px-4 group-hover:px-8 transition-all duration-300" style={{ borderBottom: "1px solid var(--color-line)" }}>
-                    <div className="flex items-start md:items-center gap-6 md:gap-10 flex-1 flex-col md:flex-row">
-                      <div className="relative h-20 md:h-24">
-                        <Image
-                          src={branch.logo}
-                          alt={`Star ${branch.name}`}
-                          width={320}
-                          height={90}
-                          className="h-20 md:h-24 w-auto"
-                        />
-                      </div>
-                      <p className="text-muted text-sm leading-relaxed md:ml-auto md:max-w-xs md:text-right transition-colors duration-300">{branch.desc}</p>
+                  <Link
+                    href={branch.href}
+                    className="group block relative overflow-hidden rounded-2xl p-7 md:p-8 border bg-bg transition-all duration-500"
+                    style={{
+                      ["--branch-color" as string]: branch.color,
+                      borderColor: hoveredBranch === i ? `color-mix(in srgb, ${branch.color} 40%, transparent)` : "var(--color-line)",
+                    }}
+                    onMouseEnter={() => setHoveredBranch(i)}
+                    onMouseLeave={() => setHoveredBranch(null)}
+                  >
+                    <div className="flex items-center justify-between gap-4 mb-5">
+                      <Image
+                        src={branch.logo}
+                        alt={`Star ${branch.name}`}
+                        width={200}
+                        height={56}
+                        className="h-12 md:h-14 w-auto"
+                      />
+                      <ArrowUpRight
+                        size={18}
+                        className="transition-all duration-300 shrink-0"
+                        style={{ color: hoveredBranch === i ? branch.color : "var(--color-line)" }}
+                      />
                     </div>
-                    <ArrowUpRight size={20} className="text-line transition-colors duration-300 group-hover:text-[var(--branch-color)] mt-1 md:mt-0 shrink-0" />
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+
+                    <p className="text-sm leading-relaxed transition-colors duration-500" style={{ color: hoveredBranch === i ? `color-mix(in srgb, ${branch.color} 60%, var(--color-fg))` : "var(--color-muted)" }}>
+                      {branch.desc}
+                    </p>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Partners */}
-      <section className="py-24 md:py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-16 max-w-2xl">
-            <span className="text-[11px] uppercase tracking-widest text-muted font-medium">Our partners</span>
-            <h2 className="text-fg text-3xl md:text-4xl font-medium tracking-tight mt-4 leading-tight">
-              Strategic alliances that<br />drive impact
-            </h2>
-          </motion.div>
+      <PartnersSection />
 
-          {/* Exclusive Partners */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-accent-orange">Exclusive Partners</span>
-              <div className="flex-1 h-px bg-line" />
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {["AHLEI", "British Council", "University of Oxford"].map((partner, i) => (
-                <motion.div
-                  key={partner}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="relative group p-6 md:p-8 rounded-2xl border-2 border-accent-orange/20 bg-accent-orange/[0.03] hover:border-accent-orange/40 transition-all duration-300"
-                >
-                  <span className="absolute top-4 right-4 text-[8px] uppercase tracking-widest font-bold text-accent-orange/50">Exclusive</span>
-                  <span className="text-fg text-lg md:text-xl font-semibold tracking-tight">{partner}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Strategic Partners */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }} className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-fg/40">Strategic Partners</span>
-              <div className="flex-1 h-px bg-line" />
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {["Siemens", "Coursera", "Pearson", "City & Guilds"].map((partner, i) => (
-                <motion.div
-                  key={partner}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.06 }}
-                  className="group p-6 rounded-2xl border border-line hover:border-fg/20 transition-all duration-300"
-                >
-                  <span className="text-fg text-base font-semibold tracking-tight">{partner}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Accreditation & Affiliations */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-fg/40">Accreditations &amp; Affiliations</span>
-              <div className="flex-1 h-px bg-line" />
-            </div>
-            <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
-              {["TVTC", "HRDF", "NCAAA", "ETEC", "Saudi Tourism Authority"].map((org, i) => (
-                <motion.div
-                  key={org}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.04 }}
-                  className="flex items-center justify-center p-4 rounded-xl bg-surface hover:bg-white transition-all duration-200 text-center"
-                >
-                  <span className="text-sm font-semibold text-muted">{org}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <FeaturedCaseStudies />
 
       {/* CTA */}
       <section className="relative py-24 md:py-32 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <h2 className="text-fg text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight mb-6">
+            <h2 className="text-fg text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight mb-10">
               Let&apos;s build something<br />that matters
             </h2>
-            <p className="text-muted text-base md:text-lg max-w-md mx-auto mb-10">
-              Whether it&apos;s a training programme, a national event, or a complex project — we&apos;re ready.
-            </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <Link href="/contact" className="group inline-flex items-center gap-3 bg-fg text-white px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 hover:bg-accent-orange">
                 Get in touch

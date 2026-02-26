@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 interface Slide {
   title: string;
@@ -32,6 +33,26 @@ export function CaseStudies({ studies, branchColor = "var(--color-fg)" }: CaseSt
   const [expanded, setExpanded] = useState(false);
   const [slideIndex, setSlideIndex] = useState(0);
   const hasInteracted = useRef(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const searchParams = useSearchParams();
+  const didAutoOpen = useRef(false);
+
+  useEffect(() => {
+    if (didAutoOpen.current) return;
+    const csParam = searchParams.get("cs");
+    const hash = window.location.hash;
+    if (csParam !== null && hash === "#case-studies") {
+      const idx = parseInt(csParam, 10);
+      if (!isNaN(idx) && idx >= 0 && idx < studies.length) {
+        didAutoOpen.current = true;
+        setActive(idx);
+        hasInteracted.current = true;
+        setTimeout(() => {
+          sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 500);
+      }
+    }
+  }, [searchParams, studies.length]);
 
   const go = useCallback(
     (dir: 1 | -1) => {
@@ -98,7 +119,7 @@ export function CaseStudies({ studies, branchColor = "var(--color-fg)" }: CaseSt
   );
 
   return (
-    <section className="py-24 md:py-32">
+    <section ref={sectionRef} id="case-studies" className="py-24 md:py-32">
       {/* Header — constrained */}
       <div className="max-w-7xl mx-auto px-6 mb-12">
         <div className="flex items-end justify-between">

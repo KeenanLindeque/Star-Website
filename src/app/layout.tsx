@@ -3,10 +3,11 @@ import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PageTransition } from "@/components/page-transition";
+import { BackToTop } from "@/components/back-to-top";
 
 export const metadata: Metadata = {
   title: "Star",
-  description: "A multi-disciplinary group delivering training, education, strategic events, and complex project execution for governments and organizations.",
+  description: "A multi-disciplinary organisation delivering training, education, strategic events, and complex project execution for governments and organisations.",
 };
 
 export default function RootLayout({
@@ -22,6 +23,7 @@ export default function RootLayout({
           <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );
